@@ -1,8 +1,9 @@
 package com.catalis.core.lending.collateral.interfaces.dtos.collateral.v1;
 
-import com.catalis.common.core.filters.FilterableId;
 import com.catalis.core.lending.collateral.interfaces.enums.collateral.v1.CurrencyCodeEnum;
 import com.catalis.core.lending.collateral.interfaces.enums.collateral.v1.ValuationMethodEnum;
+import com.catalis.core.utils.annotations.FilterableId;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +18,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CollateralValuationDTO {
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long collateralValuationId;
 
     @FilterableId

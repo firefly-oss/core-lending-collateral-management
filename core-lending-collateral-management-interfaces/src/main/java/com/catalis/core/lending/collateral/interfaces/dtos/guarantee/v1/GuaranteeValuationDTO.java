@@ -1,7 +1,8 @@
 package com.catalis.core.lending.collateral.interfaces.dtos.guarantee.v1;
 
-import com.catalis.common.core.filters.FilterableId;
 import com.catalis.core.lending.collateral.interfaces.enums.guarantee.v1.GuaranteeRiskGradeEnum;
+import com.catalis.core.utils.annotations.FilterableId;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +16,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GuaranteeValuationDTO {
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long guaranteeValuationId;
 
     @FilterableId
