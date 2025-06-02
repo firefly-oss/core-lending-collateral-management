@@ -1,6 +1,5 @@
 package com.catalis.core.lending.collateral.models.entities.collateral.v1;
 
-import com.catalis.core.lending.collateral.interfaces.enums.collateral.v1.AssetTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,8 +25,8 @@ public class CollateralAsset {
     @Column("collateral_case_id")
     private Long collateralCaseId;
 
-    @Column("asset_type")
-    private AssetTypeEnum assetType;
+    @Column("id_asset_type")
+    private Long assetType;
 
     @Column("asset_description")
     private String assetDescription;

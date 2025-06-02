@@ -1,6 +1,5 @@
 package com.catalis.core.lending.collateral.interfaces.dtos.collateral.v1;
 
-import com.catalis.core.lending.collateral.interfaces.enums.collateral.v1.AssetTypeEnum;
 import com.catalis.core.utils.annotations.FilterableId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -22,7 +21,9 @@ public class CollateralAssetDTO {
     @FilterableId
     private Long collateralCaseId;
 
-    private AssetTypeEnum assetType;
+    @FilterableId
+    private Long idAssetType;
+
     private String assetDescription;
     private BigDecimal declaredValue;
     private Boolean isPrimary;
