@@ -25,8 +25,8 @@ public class CollateralAsset {
     @Column("collateral_case_id")
     private Long collateralCaseId;
 
-    @Column("id_asset_type")
-    private Long assetType;
+    @Column("asset_type_id")
+    private Long assetTypeId;
 
     @Column("asset_description")
     private String assetDescription;

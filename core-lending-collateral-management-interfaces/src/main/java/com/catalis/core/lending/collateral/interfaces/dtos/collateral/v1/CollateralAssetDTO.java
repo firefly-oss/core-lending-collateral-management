@@ -22,7 +22,7 @@ public class CollateralAssetDTO {
     private Long collateralCaseId;
 
     @FilterableId
-    private Long idAssetType;
+    private Long assetTypeId;
 
     private String assetDescription;
     private BigDecimal declaredValue;
