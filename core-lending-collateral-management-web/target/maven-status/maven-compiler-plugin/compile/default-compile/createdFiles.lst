@@ -1,9 +1,0 @@
-com/firefly/core/lending/collateral/web/controllers/collateral/v1/CollateralLienController.class
-com/firefly/core/lending/collateral/web/controllers/collateral/v1/CollateralValuationController.class
-com/firefly/core/lending/collateral/web/controllers/guarantee/v1/GuaranteeRecordController.class
-com/firefly/core/lending/collateral/web/CollateralManagementApplication.class
-com/firefly/core/lending/collateral/web/controllers/collateral/v1/CollateralCaseController.class
-com/firefly/core/lending/collateral/web/controllers/collateral/v1/CollateralAssetController.class
-com/firefly/core/lending/collateral/web/controllers/guarantee/v1/GuaranteePartyController.class
-com/firefly/core/lending/collateral/web/controllers/collateral/v1/CollateralPartyController.class
-com/firefly/core/lending/collateral/web/controllers/guarantee/v1/GuaranteeValuationController.class
