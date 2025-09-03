@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CollateralCaseServiceImpl implements CollateralCaseService {
@@ -41,13 +43,13 @@ public class CollateralCaseServiceImpl implements CollateralCaseService {
     }
 
     @Override
-    public Mono<CollateralCaseDTO> getById(Long collateralCaseId) {
+    public Mono<CollateralCaseDTO> getById(UUID collateralCaseId) {
         return repository.findById(collateralCaseId)
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<CollateralCaseDTO> update(Long collateralCaseId, CollateralCaseDTO dto) {
+    public Mono<CollateralCaseDTO> update(UUID collateralCaseId, CollateralCaseDTO dto) {
         return repository.findById(collateralCaseId)
                 .flatMap(existingEntity -> {
                     CollateralCase updatedEntity = mapper.toEntity(dto);
@@ -58,7 +60,7 @@ public class CollateralCaseServiceImpl implements CollateralCaseService {
     }
 
     @Override
-    public Mono<Void> delete(Long collateralCaseId) {
+    public Mono<Void> delete(UUID collateralCaseId) {
         return repository.deleteById(collateralCaseId);
     }
 }

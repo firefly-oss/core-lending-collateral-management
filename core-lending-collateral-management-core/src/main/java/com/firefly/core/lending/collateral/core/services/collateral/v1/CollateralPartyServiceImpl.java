@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CollateralPartyServiceImpl implements CollateralPartyService {
@@ -23,7 +25,7 @@ public class CollateralPartyServiceImpl implements CollateralPartyService {
     private CollateralPartyMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<CollateralPartyDTO>> findAll(Long collateralCaseId, Long collateralAssetId, FilterRequest<CollateralPartyDTO> filterRequest) {
+    public Mono<PaginationResponse<CollateralPartyDTO>> findAll(UUID collateralCaseId, UUID collateralAssetId, FilterRequest<CollateralPartyDTO> filterRequest) {
         filterRequest.getFilters().setCollateralAssetId(collateralAssetId);
         return FilterUtils.createFilter(
                 CollateralParty.class,
@@ -34,7 +36,7 @@ public class CollateralPartyServiceImpl implements CollateralPartyService {
     }
 
     @Override
-    public Mono<CollateralPartyDTO> create(Long collateralCaseId, Long collateralAssetId, CollateralPartyDTO dto) {
+    public Mono<CollateralPartyDTO> create(UUID collateralCaseId, UUID collateralAssetId, CollateralPartyDTO dto) {
         dto.setCollateralAssetId(collateralAssetId);
         CollateralParty entity = mapper.toEntity(dto);
         return Mono.just(entity)
@@ -43,14 +45,14 @@ public class CollateralPartyServiceImpl implements CollateralPartyService {
     }
 
     @Override
-    public Mono<CollateralPartyDTO> getById(Long collateralCaseId, Long collateralAssetId, Long collateralPartyId) {
+    public Mono<CollateralPartyDTO> getById(UUID collateralCaseId, UUID collateralAssetId, UUID collateralPartyId) {
         return repository.findById(collateralPartyId)
                 .filter(entity -> entity.getCollateralAssetId().equals(collateralAssetId))
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<CollateralPartyDTO> update(Long collateralCaseId, Long collateralAssetId, Long collateralPartyId, CollateralPartyDTO dto) {
+    public Mono<CollateralPartyDTO> update(UUID collateralCaseId, UUID collateralAssetId, UUID collateralPartyId, CollateralPartyDTO dto) {
         return repository.findById(collateralPartyId)
                 .filter(entity -> entity.getCollateralAssetId().equals(collateralAssetId))
                 .flatMap(existingEntity -> {
@@ -63,7 +65,7 @@ public class CollateralPartyServiceImpl implements CollateralPartyService {
     }
 
     @Override
-    public Mono<Void> delete(Long collateralCaseId, Long collateralAssetId, Long collateralPartyId) {
+    public Mono<Void> delete(UUID collateralCaseId, UUID collateralAssetId, UUID collateralPartyId) {
         return repository.findById(collateralPartyId)
                 .filter(entity -> entity.getCollateralAssetId().equals(collateralAssetId))
                 .flatMap(repository::delete);

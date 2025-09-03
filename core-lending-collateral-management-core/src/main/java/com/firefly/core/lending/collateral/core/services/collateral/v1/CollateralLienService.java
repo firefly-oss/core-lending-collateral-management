@@ -5,6 +5,8 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.lending.collateral.interfaces.dtos.collateral.v1.CollateralLienDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 public interface CollateralLienService {
 
     /**
@@ -17,7 +19,7 @@ public interface CollateralLienService {
      * @return a Mono emitting a paginated response containing a list of CollateralLienDTO objects
      *         that match the provided filtering criteria.
      */
-    Mono<PaginationResponse<CollateralLienDTO>> findAll(Long collateralCaseId, Long collateralAssetId,
+    Mono<PaginationResponse<CollateralLienDTO>> findAll(UUID collateralCaseId, UUID collateralAssetId,
                                                         FilterRequest<CollateralLienDTO> filterRequest);
 
     /**
@@ -28,7 +30,7 @@ public interface CollateralLienService {
      * @param dto the CollateralLienDTO object containing the details of the collateral lien to be created
      * @return a Mono emitting the created CollateralLienDTO object
      */
-    Mono<CollateralLienDTO> create(Long collateralCaseId, Long collateralAssetId, CollateralLienDTO dto);
+    Mono<CollateralLienDTO> create(UUID collateralCaseId, UUID collateralAssetId, CollateralLienDTO dto);
 
     /**
      * Retrieves a specific collateral lien associated with a given collateral case ID,
@@ -40,7 +42,7 @@ public interface CollateralLienService {
      * @return a Mono emitting the CollateralLienDTO containing the details of the collateral lien,
      *         or an empty Mono if the lien is not found
      */
-    Mono<CollateralLienDTO> getById(Long collateralCaseId, Long collateralAssetId, Long collateralLienId);
+    Mono<CollateralLienDTO> getById(UUID collateralCaseId, UUID collateralAssetId, UUID collateralLienId);
 
     /**
      * Updates an existing collateral lien within a specific collateral case and collateral asset
@@ -52,7 +54,7 @@ public interface CollateralLienService {
      * @param dto the data transfer object containing the updated details of the collateral lien
      * @return a Mono emitting the updated CollateralLienDTO object
      */
-    Mono<CollateralLienDTO> update(Long collateralCaseId, Long collateralAssetId, Long collateralLienId,
+    Mono<CollateralLienDTO> update(UUID collateralCaseId, UUID collateralAssetId, UUID collateralLienId,
                                    CollateralLienDTO dto);
 
     /**
@@ -63,5 +65,5 @@ public interface CollateralLienService {
      * @param collateralLienId the unique identifier of the collateral lien to be deleted
      * @return a Mono signaling when the deletion is completed
      */
-    Mono<Void> delete(Long collateralCaseId, Long collateralAssetId, Long collateralLienId);
+    Mono<Void> delete(UUID collateralCaseId, UUID collateralAssetId, UUID collateralLienId);
 }

@@ -5,6 +5,8 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.lending.collateral.interfaces.dtos.collateral.v1.CollateralPartyDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 public interface CollateralPartyService {
 
     /**
@@ -17,7 +19,7 @@ public interface CollateralPartyService {
      * @return a Mono emitting a paginated response containing a list of CollateralPartyDTO objects
      *         that match the provided filtering criteria.
      */
-    Mono<PaginationResponse<CollateralPartyDTO>> findAll(Long collateralCaseId, Long collateralAssetId,
+    Mono<PaginationResponse<CollateralPartyDTO>> findAll(UUID collateralCaseId, UUID collateralAssetId,
                                                          FilterRequest<CollateralPartyDTO> filterRequest);
 
     /**
@@ -28,7 +30,7 @@ public interface CollateralPartyService {
      * @param dto the CollateralPartyDTO object containing the details of the collateral party to be created
      * @return a Mono emitting the created CollateralPartyDTO object
      */
-    Mono<CollateralPartyDTO> create(Long collateralCaseId, Long collateralAssetId, CollateralPartyDTO dto);
+    Mono<CollateralPartyDTO> create(UUID collateralCaseId, UUID collateralAssetId, CollateralPartyDTO dto);
 
     /**
      * Retrieves a specific collateral party associated with the given collateral case, asset, and party IDs.
@@ -39,7 +41,7 @@ public interface CollateralPartyService {
      * @return a Mono emitting the CollateralPartyDTO containing the details of the collateral party,
      *         or an empty Mono if the party is not found
      */
-    Mono<CollateralPartyDTO> getById(Long collateralCaseId, Long collateralAssetId, Long collateralPartyId);
+    Mono<CollateralPartyDTO> getById(UUID collateralCaseId, UUID collateralAssetId, UUID collateralPartyId);
 
     /**
      * Updates an existing collateral party associated with the specified collateral case, asset, and party identifiers
@@ -51,7 +53,7 @@ public interface CollateralPartyService {
      * @param dto the data transfer object containing the updated details of the collateral party
      * @return a Mono emitting the updated CollateralPartyDTO object
      */
-    Mono<CollateralPartyDTO> update(Long collateralCaseId, Long collateralAssetId, Long collateralPartyId,
+    Mono<CollateralPartyDTO> update(UUID collateralCaseId, UUID collateralAssetId, UUID collateralPartyId,
                                     CollateralPartyDTO dto);
 
     /**
@@ -63,5 +65,5 @@ public interface CollateralPartyService {
      * @param collateralPartyId the unique identifier of the collateral party to be deleted
      * @return a Mono signaling when the deletion is completed
      */
-    Mono<Void> delete(Long collateralCaseId, Long collateralAssetId, Long collateralPartyId);
+    Mono<Void> delete(UUID collateralCaseId, UUID collateralAssetId, UUID collateralPartyId);
 }

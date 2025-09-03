@@ -5,6 +5,8 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.lending.collateral.interfaces.dtos.collateral.v1.CollateralCaseDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 public interface CollateralCaseService {
 
     /**
@@ -29,7 +31,7 @@ public interface CollateralCaseService {
      * @param collateralCaseId the unique identifier of the collateral case to be retrieved
      * @return a {@code Mono} emitting the {@code CollateralCaseDTO} corresponding to the provided ID, or an empty Mono if no collateral case is found
      */
-    Mono<CollateralCaseDTO> getById(Long collateralCaseId);
+    Mono<CollateralCaseDTO> getById(UUID collateralCaseId);
 
     /**
      * Updates an existing collateral case with the given details.
@@ -38,7 +40,7 @@ public interface CollateralCaseService {
      * @param dto the data transfer object containing the updated details of the collateral case
      * @return a Mono emitting the updated collateral case details encapsulated in {@code CollateralCaseDTO}
      */
-    Mono<CollateralCaseDTO> update(Long collateralCaseId, CollateralCaseDTO dto);
+    Mono<CollateralCaseDTO> update(UUID collateralCaseId, CollateralCaseDTO dto);
 
     /**
      * Deletes a collateral case identified by its ID.
@@ -46,5 +48,5 @@ public interface CollateralCaseService {
      * @param collateralCaseId the unique identifier of the collateral case to be deleted
      * @return a Mono signaling when the deletion is completed
      */
-    Mono<Void> delete(Long collateralCaseId);
+    Mono<Void> delete(UUID collateralCaseId);
 }

@@ -5,6 +5,8 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.lending.collateral.interfaces.dtos.collateral.v1.CollateralValuationDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 public interface CollateralValuationService {
 
     /**
@@ -17,7 +19,7 @@ public interface CollateralValuationService {
      * @return a Mono emitting a paginated response containing a list of CollateralValuationDTO objects
      *         that match the filtering criteria
      */
-    Mono<PaginationResponse<CollateralValuationDTO>> findAll(Long collateralCaseId, Long collateralAssetId,
+    Mono<PaginationResponse<CollateralValuationDTO>> findAll(UUID collateralCaseId, UUID collateralAssetId,
                                                              FilterRequest<CollateralValuationDTO> filterRequest);
 
     /**
@@ -28,7 +30,7 @@ public interface CollateralValuationService {
      * @param dto the CollateralValuationDTO object containing the details of the valuation to be created
      * @return a Mono emitting the created CollateralValuationDTO object
      */
-    Mono<CollateralValuationDTO> create(Long collateralCaseId, Long collateralAssetId, CollateralValuationDTO dto);
+    Mono<CollateralValuationDTO> create(UUID collateralCaseId, UUID collateralAssetId, CollateralValuationDTO dto);
 
     /**
      * Retrieves a specific collateral valuation based on the provided identifiers.
@@ -39,7 +41,7 @@ public interface CollateralValuationService {
      * @return a Mono emitting the CollateralValuationDTO containing the details of the specified collateral valuation,
      *         or an empty Mono if the valuation is not found
      */
-    Mono<CollateralValuationDTO> getById(Long collateralCaseId, Long collateralAssetId, Long collateralValuationId);
+    Mono<CollateralValuationDTO> getById(UUID collateralCaseId, UUID collateralAssetId, UUID collateralValuationId);
 
     /**
      * Updates an existing collateral valuation identified by its collateral case ID, collateral asset ID,
@@ -51,7 +53,7 @@ public interface CollateralValuationService {
      * @param dto the data transfer object containing the updated details of the collateral valuation
      * @return a Mono emitting the updated CollateralValuationDTO object
      */
-    Mono<CollateralValuationDTO> update(Long collateralCaseId, Long collateralAssetId, Long collateralValuationId,
+    Mono<CollateralValuationDTO> update(UUID collateralCaseId, UUID collateralAssetId, UUID collateralValuationId,
                                         CollateralValuationDTO dto);
 
     /**
@@ -63,5 +65,5 @@ public interface CollateralValuationService {
      * @param collateralValuationId the unique identifier of the collateral valuation to be deleted
      * @return a Mono signaling when the deletion is completed
      */
-    Mono<Void> delete(Long collateralCaseId, Long collateralAssetId, Long collateralValuationId);
+    Mono<Void> delete(UUID collateralCaseId, UUID collateralAssetId, UUID collateralValuationId);
 }
