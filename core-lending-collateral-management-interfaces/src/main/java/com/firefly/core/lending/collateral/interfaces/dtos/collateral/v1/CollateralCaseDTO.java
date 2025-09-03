@@ -8,7 +8,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -17,16 +20,23 @@ import java.time.LocalDateTime;
 public class CollateralCaseDTO {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long collateralCaseId;
+    private UUID collateralCaseId;
 
     @FilterableId
-    private Long loanContractId;
+    @NotNull(message = "Loan contract ID is required")
+    private UUID loanContractId;
 
     @FilterableId
-    private Long loanApplicationId;
+    @NotNull(message = "Loan application ID is required")
+    private UUID loanApplicationId;
 
+    @Size(max = 50, message = "Reference number must not exceed 50 characters")
     private String referenceNumber;
+
+    @NotNull(message = "Collateral status is required")
     private CollateralStatusEnum collateralStatus;
+
+    @Size(max = 1000, message = "Remarks must not exceed 1000 characters")
     private String remarks;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

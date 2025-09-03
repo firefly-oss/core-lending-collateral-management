@@ -8,8 +8,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -17,16 +21,30 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class CollateralLienDTO {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long collateralLienId;
+    private UUID collateralLienId;
 
     @FilterableId
-    private Long collateralAssetId;
+    @NotNull(message = "Collateral asset ID is required")
+    private UUID collateralAssetId;
 
+    @NotNull(message = "Lien type is required")
     private LienTypeEnum lienType;
+
+    @NotNull(message = "Registration details are required")
+    @Size(min = 1, max = 1000, message = "Registration details must be between 1 and 1000 characters")
     private String registrationDetails;
+
+    @NotNull(message = "Release status is required")
     private Boolean isReleased;
+
+    @NotNull(message = "Lien date is required")
+    @PastOrPresent(message = "Lien date cannot be in the future")
     private LocalDate lienDate;
+
+    @PastOrPresent(message = "Release date cannot be in the future")
     private LocalDate releaseDate;
+
+    @Size(max = 1000, message = "Remarks must not exceed 1000 characters")
     private String remarks;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
