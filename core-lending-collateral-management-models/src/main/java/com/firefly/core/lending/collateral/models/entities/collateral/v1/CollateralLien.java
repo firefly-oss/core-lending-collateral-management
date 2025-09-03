@@ -11,6 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -21,10 +22,10 @@ public class CollateralLien {
 
     @Id
     @Column("collateral_lien_id")
-    private Long collateralLienId;
+    private UUID collateralLienId;
 
     @Column("collateral_asset_id")
-    private Long collateralAssetId;
+    private UUID collateralAssetId;
 
     @Column("lien_type")
     private LienTypeEnum lienType;

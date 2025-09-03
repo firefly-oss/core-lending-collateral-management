@@ -10,6 +10,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -20,13 +21,13 @@ public class CollateralCase {
 
     @Id
     @Column("collateral_case_id")
-    private Long collateralCaseId;
+    private UUID collateralCaseId;
 
     @Column("loan_contract_id")
-    private Long loanContractId;
+    private UUID loanContractId;
 
     @Column("loan_application_id")
-    private Long loanApplicationId;
+    private UUID loanApplicationId;
 
     @Column("reference_number")
     private String referenceNumber;

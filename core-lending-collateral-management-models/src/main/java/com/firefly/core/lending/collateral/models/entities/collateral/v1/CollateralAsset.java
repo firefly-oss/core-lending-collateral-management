@@ -10,6 +10,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -20,13 +21,13 @@ public class CollateralAsset {
 
     @Id
     @Column("collateral_asset_id")
-    private Long collateralAssetId;
+    private UUID collateralAssetId;
 
     @Column("collateral_case_id")
-    private Long collateralCaseId;
+    private UUID collateralCaseId;
 
     @Column("asset_type_id")
-    private Long assetTypeId;
+    private UUID assetTypeId;
 
     @Column("asset_description")
     private String assetDescription;

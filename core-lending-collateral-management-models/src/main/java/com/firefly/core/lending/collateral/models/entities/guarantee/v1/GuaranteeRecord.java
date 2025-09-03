@@ -13,6 +13,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -23,13 +24,13 @@ public class GuaranteeRecord {
 
     @Id
     @Column("guarantee_record_id")
-    private Long guaranteeRecordId;
+    private UUID guaranteeRecordId;
 
     @Column("loan_contract_id")
-    private Long loanContractId;
+    private UUID loanContractId;
 
     @Column("loan_application_id")
-    private Long loanApplicationId;
+    private UUID loanApplicationId;
 
     @Column("guarantee_type")
     private GuaranteeTypeEnum guaranteeType;

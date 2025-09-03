@@ -11,6 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -21,13 +22,13 @@ public class CollateralParty {
 
     @Id
     @Column("collateral_party_id")
-    private Long collateralPartyId;
+    private UUID collateralPartyId;
 
     @Column("collateral_asset_id")
-    private Long collateralAssetId;
+    private UUID collateralAssetId;
 
     @Column("party_id")
-    private Long partyId;
+    private UUID partyId;
 
     @Column("role_code")
     private CollateralPartyRoleEnum roleCode;

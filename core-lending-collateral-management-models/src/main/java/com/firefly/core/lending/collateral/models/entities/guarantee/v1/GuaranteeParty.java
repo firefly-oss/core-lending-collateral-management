@@ -10,6 +10,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -20,13 +21,13 @@ public class GuaranteeParty {
 
     @Id
     @Column("guarantee_party_id")
-    private Long guaranteePartyId;
+    private UUID guaranteePartyId;
 
     @Column("guarantee_record_id")
-    private Long guaranteeRecordId;
+    private UUID guaranteeRecordId;
 
     @Column("party_id")
-    private Long partyId;
+    private UUID partyId;
 
     @Column("guarantee_role")
     private GuaranteeRoleEnum guaranteeRole;

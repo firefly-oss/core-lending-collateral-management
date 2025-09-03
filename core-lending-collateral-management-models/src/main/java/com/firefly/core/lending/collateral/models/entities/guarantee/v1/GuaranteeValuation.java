@@ -11,6 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -21,10 +22,10 @@ public class GuaranteeValuation {
 
     @Id
     @Column("guarantee_valuation_id")
-    private Long guaranteeValuationId;
+    private UUID guaranteeValuationId;
 
     @Column("guarantee_record_id")
-    private Long guaranteeRecordId;
+    private UUID guaranteeRecordId;
 
     @Column("assessed_risk_amount")
     private BigDecimal assessedRiskAmount;
