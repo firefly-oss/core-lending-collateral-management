@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class GuaranteePartyServiceImpl implements GuaranteePartyService {
@@ -23,7 +25,7 @@ public class GuaranteePartyServiceImpl implements GuaranteePartyService {
     private GuaranteePartyMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<GuaranteePartyDTO>> findAll(Long guaranteeRecordId, FilterRequest<GuaranteePartyDTO> filterRequest) {
+    public Mono<PaginationResponse<GuaranteePartyDTO>> findAll(UUID guaranteeRecordId, FilterRequest<GuaranteePartyDTO> filterRequest) {
         filterRequest.getFilters().setGuaranteeRecordId(guaranteeRecordId);
         return FilterUtils.createFilter(
                 GuaranteeParty.class,
@@ -34,7 +36,7 @@ public class GuaranteePartyServiceImpl implements GuaranteePartyService {
     }
 
     @Override
-    public Mono<GuaranteePartyDTO> create(Long guaranteeRecordId, GuaranteePartyDTO dto) {
+    public Mono<GuaranteePartyDTO> create(UUID guaranteeRecordId, GuaranteePartyDTO dto) {
         dto.setGuaranteeRecordId(guaranteeRecordId);
         GuaranteeParty entity = mapper.toEntity(dto);
         return Mono.just(entity)
@@ -43,14 +45,14 @@ public class GuaranteePartyServiceImpl implements GuaranteePartyService {
     }
 
     @Override
-    public Mono<GuaranteePartyDTO> getById(Long guaranteeRecordId, Long guaranteePartyId) {
+    public Mono<GuaranteePartyDTO> getById(UUID guaranteeRecordId, UUID guaranteePartyId) {
         return repository.findById(guaranteePartyId)
                 .filter(entity -> entity.getGuaranteeRecordId().equals(guaranteeRecordId))
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<GuaranteePartyDTO> update(Long guaranteeRecordId, Long guaranteePartyId, GuaranteePartyDTO dto) {
+    public Mono<GuaranteePartyDTO> update(UUID guaranteeRecordId, UUID guaranteePartyId, GuaranteePartyDTO dto) {
         return repository.findById(guaranteePartyId)
                 .filter(entity -> entity.getGuaranteeRecordId().equals(guaranteeRecordId))
                 .flatMap(existingEntity -> {
@@ -63,7 +65,7 @@ public class GuaranteePartyServiceImpl implements GuaranteePartyService {
     }
 
     @Override
-    public Mono<Void> delete(Long guaranteeRecordId, Long guaranteePartyId) {
+    public Mono<Void> delete(UUID guaranteeRecordId, UUID guaranteePartyId) {
         return repository.findById(guaranteePartyId)
                 .filter(entity -> entity.getGuaranteeRecordId().equals(guaranteeRecordId))
                 .flatMap(repository::delete);

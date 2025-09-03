@@ -5,6 +5,8 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.lending.collateral.interfaces.dtos.guarantee.v1.GuaranteePartyDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 public interface GuaranteePartyService {
 
     /**
@@ -16,7 +18,7 @@ public interface GuaranteePartyService {
      * @return a Mono emitting a paginated response containing a list of GuaranteePartyDTO objects
      *         that match the provided filtering criteria
      */
-    Mono<PaginationResponse<GuaranteePartyDTO>> findAll(Long guaranteeRecordId, FilterRequest<GuaranteePartyDTO> filterRequest);
+    Mono<PaginationResponse<GuaranteePartyDTO>> findAll(UUID guaranteeRecordId, FilterRequest<GuaranteePartyDTO> filterRequest);
 
     /**
      * Creates a new guarantee party associated with a specific guarantee record.
@@ -25,7 +27,7 @@ public interface GuaranteePartyService {
      * @param dto the GuaranteePartyDTO object containing the details of the guarantee party to be created
      * @return a Mono emitting the created GuaranteePartyDTO object
      */
-    Mono<GuaranteePartyDTO> create(Long guaranteeRecordId, GuaranteePartyDTO dto);
+    Mono<GuaranteePartyDTO> create(UUID guaranteeRecordId, GuaranteePartyDTO dto);
 
     /**
      * Retrieves a specific guarantee party associated with the given guarantee record and guarantee party IDs.
@@ -35,7 +37,7 @@ public interface GuaranteePartyService {
      * @return a Mono emitting the GuaranteePartyDTO containing the details of the guarantee party,
      *         or an empty Mono if the guarantee party is not found
      */
-    Mono<GuaranteePartyDTO> getById(Long guaranteeRecordId, Long guaranteePartyId);
+    Mono<GuaranteePartyDTO> getById(UUID guaranteeRecordId, UUID guaranteePartyId);
 
     /**
      * Updates an existing GuaranteeParty record with the provided details.
@@ -45,7 +47,7 @@ public interface GuaranteePartyService {
      * @param dto the data transfer object containing the updated details of the guarantee party
      * @return a Mono emitting the updated GuaranteePartyDTO object
      */
-    Mono<GuaranteePartyDTO> update(Long guaranteeRecordId, Long guaranteePartyId, GuaranteePartyDTO dto);
+    Mono<GuaranteePartyDTO> update(UUID guaranteeRecordId, UUID guaranteePartyId, GuaranteePartyDTO dto);
 
     /**
      * Deletes a guarantee party associated with the specified guarantee record and party identifiers.
@@ -54,5 +56,5 @@ public interface GuaranteePartyService {
      * @param guaranteePartyId the unique identifier of the guarantee party to be deleted
      * @return a Mono signaling when the deletion operation is completed
      */
-    Mono<Void> delete(Long guaranteeRecordId, Long guaranteePartyId);
+    Mono<Void> delete(UUID guaranteeRecordId, UUID guaranteePartyId);
 }

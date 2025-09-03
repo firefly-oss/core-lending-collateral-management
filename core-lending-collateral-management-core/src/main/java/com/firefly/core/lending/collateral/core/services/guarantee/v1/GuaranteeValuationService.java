@@ -5,6 +5,8 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.lending.collateral.interfaces.dtos.guarantee.v1.GuaranteeValuationDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 public interface GuaranteeValuationService {
 
     /**
@@ -16,7 +18,7 @@ public interface GuaranteeValuationService {
      * @return a Mono emitting a paginated response containing a list of GuaranteeValuationDTO objects
      *         that match the provided filtering and pagination criteria
      */
-    Mono<PaginationResponse<GuaranteeValuationDTO>> findAll(Long guaranteeRecordId, FilterRequest<GuaranteeValuationDTO> filterRequest);
+    Mono<PaginationResponse<GuaranteeValuationDTO>> findAll(UUID guaranteeRecordId, FilterRequest<GuaranteeValuationDTO> filterRequest);
 
     /**
      * Creates a new guarantee valuation for the specified guarantee record.
@@ -25,7 +27,7 @@ public interface GuaranteeValuationService {
      * @param dto the GuaranteeValuationDTO object containing the details of the guarantee valuation to be created
      * @return a Mono emitting the created GuaranteeValuationDTO object
      */
-    Mono<GuaranteeValuationDTO> create(Long guaranteeRecordId, GuaranteeValuationDTO dto);
+    Mono<GuaranteeValuationDTO> create(UUID guaranteeRecordId, GuaranteeValuationDTO dto);
 
     /**
      * Retrieves a guarantee valuation identified by its unique identifiers.
@@ -35,7 +37,7 @@ public interface GuaranteeValuationService {
      * @return a Mono emitting the GuaranteeValuationDTO containing the details of the guarantee valuation,
      *         or an empty Mono if the valuation is not found
      */
-    Mono<GuaranteeValuationDTO> getById(Long guaranteeRecordId, Long guaranteeValuationId);
+    Mono<GuaranteeValuationDTO> getById(UUID guaranteeRecordId, UUID guaranteeValuationId);
 
     /**
      * Updates an existing guarantee valuation record with the specified details.
@@ -45,7 +47,7 @@ public interface GuaranteeValuationService {
      * @param dto the data transfer object containing the updated details of the guarantee valuation
      * @return a Mono emitting the updated GuaranteeValuationDTO object
      */
-    Mono<GuaranteeValuationDTO> update(Long guaranteeRecordId, Long guaranteeValuationId, GuaranteeValuationDTO dto);
+    Mono<GuaranteeValuationDTO> update(UUID guaranteeRecordId, UUID guaranteeValuationId, GuaranteeValuationDTO dto);
 
     /**
      * Deletes a guarantee valuation associated with the specified guarantee record and valuation IDs.
@@ -54,5 +56,5 @@ public interface GuaranteeValuationService {
      * @param guaranteeValuationId the unique identifier of the guarantee valuation to be deleted
      * @return a Mono signaling when the deletion is completed
      */
-    Mono<Void> delete(Long guaranteeRecordId, Long guaranteeValuationId);
+    Mono<Void> delete(UUID guaranteeRecordId, UUID guaranteeValuationId);
 }

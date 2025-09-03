@@ -5,6 +5,8 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.lending.collateral.interfaces.dtos.guarantee.v1.GuaranteeRecordDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 public interface GuaranteeRecordService {
 
     /**
@@ -29,7 +31,7 @@ public interface GuaranteeRecordService {
      * @param guaranteeRecordId the unique identifier of the guarantee record to be retrieved
      * @return a Mono emitting the GuaranteeRecordDTO corresponding to the specified ID, or an empty Mono if no record is found
      */
-    Mono<GuaranteeRecordDTO> getById(Long guaranteeRecordId);
+    Mono<GuaranteeRecordDTO> getById(UUID guaranteeRecordId);
 
     /**
      * Updates an existing guarantee record with the provided details.
@@ -38,7 +40,7 @@ public interface GuaranteeRecordService {
      * @param dto the data transfer object containing the updated details of the guarantee record
      * @return a Mono emitting the updated GuaranteeRecordDTO object
      */
-    Mono<GuaranteeRecordDTO> update(Long guaranteeRecordId, GuaranteeRecordDTO dto);
+    Mono<GuaranteeRecordDTO> update(UUID guaranteeRecordId, GuaranteeRecordDTO dto);
 
     /**
      * Deletes a guarantee record identified by its unique identifier.
@@ -46,5 +48,5 @@ public interface GuaranteeRecordService {
      * @param guaranteeRecordId the unique identifier of the guarantee record to be deleted
      * @return a Mono signaling when the deletion operation is completed
      */
-    Mono<Void> delete(Long guaranteeRecordId);
+    Mono<Void> delete(UUID guaranteeRecordId);
 }

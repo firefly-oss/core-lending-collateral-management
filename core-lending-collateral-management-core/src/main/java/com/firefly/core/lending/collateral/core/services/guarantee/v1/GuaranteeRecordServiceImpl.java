@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class GuaranteeRecordServiceImpl implements GuaranteeRecordService {
@@ -40,14 +42,14 @@ public class GuaranteeRecordServiceImpl implements GuaranteeRecordService {
     }
 
     @Override
-    public Mono<GuaranteeRecordDTO> getById(Long guaranteeRecordId) {
+    public Mono<GuaranteeRecordDTO> getById(UUID guaranteeRecordId) {
         return Mono.from(repository.findById(guaranteeRecordId))
                 .map(mapper::toDTO)
                 .switchIfEmpty(Mono.empty());
     }
 
     @Override
-    public Mono<GuaranteeRecordDTO> update(Long guaranteeRecordId, GuaranteeRecordDTO dto) {
+    public Mono<GuaranteeRecordDTO> update(UUID guaranteeRecordId, GuaranteeRecordDTO dto) {
         return Mono.from(repository.findById(guaranteeRecordId))
                 .flatMap(existing -> {
                     GuaranteeRecord updated = mapper.toEntity(dto);
@@ -58,7 +60,7 @@ public class GuaranteeRecordServiceImpl implements GuaranteeRecordService {
     }
 
     @Override
-    public Mono<Void> delete(Long guaranteeRecordId) {
+    public Mono<Void> delete(UUID guaranteeRecordId) {
         return Mono.from(repository.deleteById(guaranteeRecordId));
     }
 }

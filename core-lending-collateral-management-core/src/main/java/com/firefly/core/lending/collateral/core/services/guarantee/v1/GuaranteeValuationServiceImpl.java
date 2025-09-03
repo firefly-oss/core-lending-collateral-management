@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -25,7 +26,7 @@ public class GuaranteeValuationServiceImpl implements GuaranteeValuationService 
     private GuaranteeValuationMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<GuaranteeValuationDTO>> findAll(Long guaranteeRecordId, FilterRequest<GuaranteeValuationDTO> filterRequest) {
+    public Mono<PaginationResponse<GuaranteeValuationDTO>> findAll(UUID guaranteeRecordId, FilterRequest<GuaranteeValuationDTO> filterRequest) {
         filterRequest.getFilters().setGuaranteeRecordId(guaranteeRecordId);
         return FilterUtils.createFilter(
                 GuaranteeValuation.class,
@@ -36,7 +37,7 @@ public class GuaranteeValuationServiceImpl implements GuaranteeValuationService 
     }
 
     @Override
-    public Mono<GuaranteeValuationDTO> create(Long guaranteeRecordId, GuaranteeValuationDTO dto) {
+    public Mono<GuaranteeValuationDTO> create(UUID guaranteeRecordId, GuaranteeValuationDTO dto) {
         dto.setGuaranteeRecordId(guaranteeRecordId);
         GuaranteeValuation entity = mapper.toEntity(dto);
         entity.setCreatedAt(LocalDateTime.now());
@@ -46,14 +47,14 @@ public class GuaranteeValuationServiceImpl implements GuaranteeValuationService 
     }
 
     @Override
-    public Mono<GuaranteeValuationDTO> getById(Long guaranteeRecordId, Long guaranteeValuationId) {
+    public Mono<GuaranteeValuationDTO> getById(UUID guaranteeRecordId, UUID guaranteeValuationId) {
         return repository.findById(guaranteeValuationId)
                 .filter(entity -> entity.getGuaranteeRecordId().equals(guaranteeRecordId))
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<GuaranteeValuationDTO> update(Long guaranteeRecordId, Long guaranteeValuationId, GuaranteeValuationDTO dto) {
+    public Mono<GuaranteeValuationDTO> update(UUID guaranteeRecordId, UUID guaranteeValuationId, GuaranteeValuationDTO dto) {
         return repository.findById(guaranteeValuationId)
                 .filter(entity -> entity.getGuaranteeRecordId().equals(guaranteeRecordId))
                 .flatMap(entity -> {
@@ -68,7 +69,7 @@ public class GuaranteeValuationServiceImpl implements GuaranteeValuationService 
     }
 
     @Override
-    public Mono<Void> delete(Long guaranteeRecordId, Long guaranteeValuationId) {
+    public Mono<Void> delete(UUID guaranteeRecordId, UUID guaranteeValuationId) {
         return repository.findById(guaranteeValuationId)
                 .filter(entity -> entity.getGuaranteeRecordId().equals(guaranteeRecordId))
                 .flatMap(repository::delete);
