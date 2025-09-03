@@ -113,7 +113,7 @@
                             <output>${generated-sources-dir}</output>
                             <apiPackage>com.firefly.core.lending.collateral.sdk.api</apiPackage>
                             <modelPackage>com.firefly.core.lending.collateral.sdk.model</modelPackage>
-                            <invokerPackage>com.firefly.core.lending.collateral.hub.sdk.invoker</invokerPackage>
+                            <invokerPackage>com.firefly.core.lending.collateral.sdk.invoker</invokerPackage>
                             <configOptions>
                                 <java20>true</java20>
                                 <useTags>true</useTags>
