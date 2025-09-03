@@ -12,6 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import jakarta.validation.Valid;
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/v1/collateral-cases/{collateralCaseId}/assets/{collateralAssetId}/valuations")
 @Tag(name = "CollateralValuation", description = "Operations for Collateral Valuations")
@@ -23,8 +26,8 @@ public class CollateralValuationController {
     @GetMapping
     @Operation(summary = "List or Search Valuations for an Asset")
     public Mono<ResponseEntity<PaginationResponse<CollateralValuationDTO>>> findAll(
-            @PathVariable Long collateralCaseId,
-            @PathVariable Long collateralAssetId,
+            @PathVariable UUID collateralCaseId,
+            @PathVariable UUID collateralAssetId,
             @ParameterObject @ModelAttribute FilterRequest<CollateralValuationDTO> filterRequest) {
 
         return service.findAll(collateralCaseId, collateralAssetId, filterRequest)
@@ -34,9 +37,9 @@ public class CollateralValuationController {
     @PostMapping
     @Operation(summary = "Create a Valuation under an Asset")
     public Mono<ResponseEntity<CollateralValuationDTO>> create(
-            @PathVariable Long collateralCaseId,
-            @PathVariable Long collateralAssetId,
-            @RequestBody CollateralValuationDTO dto) {
+            @PathVariable UUID collateralCaseId,
+            @PathVariable UUID collateralAssetId,
+            @Valid @RequestBody CollateralValuationDTO dto) {
 
         return service.create(collateralCaseId, collateralAssetId, dto)
                 .map(ResponseEntity::ok);
@@ -45,9 +48,9 @@ public class CollateralValuationController {
     @GetMapping("/{collateralValuationId}")
     @Operation(summary = "Get a Collateral Valuation by ID")
     public Mono<ResponseEntity<CollateralValuationDTO>> getById(
-            @PathVariable Long collateralCaseId,
-            @PathVariable Long collateralAssetId,
-            @PathVariable Long collateralValuationId) {
+            @PathVariable UUID collateralCaseId,
+            @PathVariable UUID collateralAssetId,
+            @PathVariable UUID collateralValuationId) {
 
         return service.getById(collateralCaseId, collateralAssetId, collateralValuationId)
                 .map(ResponseEntity::ok);
@@ -56,10 +59,10 @@ public class CollateralValuationController {
     @PutMapping("/{collateralValuationId}")
     @Operation(summary = "Update a Collateral Valuation")
     public Mono<ResponseEntity<CollateralValuationDTO>> update(
-            @PathVariable Long collateralCaseId,
-            @PathVariable Long collateralAssetId,
-            @PathVariable Long collateralValuationId,
-            @RequestBody CollateralValuationDTO dto) {
+            @PathVariable UUID collateralCaseId,
+            @PathVariable UUID collateralAssetId,
+            @PathVariable UUID collateralValuationId,
+            @Valid @RequestBody CollateralValuationDTO dto) {
 
         return service.update(collateralCaseId, collateralAssetId, collateralValuationId, dto)
                 .map(ResponseEntity::ok);
@@ -68,9 +71,9 @@ public class CollateralValuationController {
     @DeleteMapping("/{collateralValuationId}")
     @Operation(summary = "Delete a Collateral Valuation")
     public Mono<ResponseEntity<Void>> delete(
-            @PathVariable Long collateralCaseId,
-            @PathVariable Long collateralAssetId,
-            @PathVariable Long collateralValuationId) {
+            @PathVariable UUID collateralCaseId,
+            @PathVariable UUID collateralAssetId,
+            @PathVariable UUID collateralValuationId) {
 
         return service.delete(collateralCaseId, collateralAssetId, collateralValuationId)
                 .map(ResponseEntity::ok);

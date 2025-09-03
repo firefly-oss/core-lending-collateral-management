@@ -12,6 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import jakarta.validation.Valid;
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/v1/api/guarantees/{guaranteeRecordId}/valuations")
 @Tag(name = "GuaranteeValuation", description = "Operations for Guarantee Valuations")
@@ -23,7 +26,7 @@ public class GuaranteeValuationController {
     @GetMapping
     @Operation(summary = "List or Search Guarantee Valuations")
     public Mono<ResponseEntity<PaginationResponse<GuaranteeValuationDTO>>> findAll(
-            @PathVariable Long guaranteeRecordId,
+            @PathVariable UUID guaranteeRecordId,
             @ParameterObject @ModelAttribute FilterRequest<GuaranteeValuationDTO> filterRequest) {
 
         return service.findAll(guaranteeRecordId, filterRequest)
@@ -33,8 +36,8 @@ public class GuaranteeValuationController {
     @PostMapping
     @Operation(summary = "Create a Guarantee Valuation")
     public Mono<ResponseEntity<GuaranteeValuationDTO>> create(
-            @PathVariable Long guaranteeRecordId,
-            @RequestBody GuaranteeValuationDTO dto) {
+            @PathVariable UUID guaranteeRecordId,
+            @Valid @RequestBody GuaranteeValuationDTO dto) {
 
         return service.create(guaranteeRecordId, dto)
                 .map(ResponseEntity::ok);
@@ -43,8 +46,8 @@ public class GuaranteeValuationController {
     @GetMapping("/{guaranteeValuationId}")
     @Operation(summary = "Get a Guarantee Valuation by ID")
     public Mono<ResponseEntity<GuaranteeValuationDTO>> getById(
-            @PathVariable Long guaranteeRecordId,
-            @PathVariable Long guaranteeValuationId) {
+            @PathVariable UUID guaranteeRecordId,
+            @PathVariable UUID guaranteeValuationId) {
 
         return service.getById(guaranteeRecordId, guaranteeValuationId)
                 .map(ResponseEntity::ok);
@@ -53,9 +56,9 @@ public class GuaranteeValuationController {
     @PutMapping("/{guaranteeValuationId}")
     @Operation(summary = "Update a Guarantee Valuation")
     public Mono<ResponseEntity<GuaranteeValuationDTO>> update(
-            @PathVariable Long guaranteeRecordId,
-            @PathVariable Long guaranteeValuationId,
-            @RequestBody GuaranteeValuationDTO dto) {
+            @PathVariable UUID guaranteeRecordId,
+            @PathVariable UUID guaranteeValuationId,
+            @Valid @RequestBody GuaranteeValuationDTO dto) {
 
         return service.update(guaranteeRecordId, guaranteeValuationId, dto)
                 .map(ResponseEntity::ok);
@@ -64,8 +67,8 @@ public class GuaranteeValuationController {
     @DeleteMapping("/{guaranteeValuationId}")
     @Operation(summary = "Delete a Guarantee Valuation")
     public Mono<ResponseEntity<Void>> delete(
-            @PathVariable Long guaranteeRecordId,
-            @PathVariable Long guaranteeValuationId) {
+            @PathVariable UUID guaranteeRecordId,
+            @PathVariable UUID guaranteeValuationId) {
 
         return service.delete(guaranteeRecordId, guaranteeValuationId)
                 .map(ResponseEntity::ok);

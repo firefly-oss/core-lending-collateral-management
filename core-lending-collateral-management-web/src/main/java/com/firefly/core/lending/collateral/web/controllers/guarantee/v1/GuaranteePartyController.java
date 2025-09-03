@@ -12,6 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import jakarta.validation.Valid;
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/v1/api/guarantees/{guaranteeRecordId}/parties")
 @Tag(name = "GuaranteeParty", description = "Operations for Parties associated with a GuaranteeRecord")
@@ -23,7 +26,7 @@ public class GuaranteePartyController {
     @GetMapping
     @Operation(summary = "List or Search Guarantee Parties")
     public Mono<ResponseEntity<PaginationResponse<GuaranteePartyDTO>>> findAll(
-            @PathVariable Long guaranteeRecordId,
+            @PathVariable UUID guaranteeRecordId,
             @ParameterObject @ModelAttribute FilterRequest<GuaranteePartyDTO> filterRequest) {
 
         return service.findAll(guaranteeRecordId, filterRequest)
@@ -33,8 +36,8 @@ public class GuaranteePartyController {
     @PostMapping
     @Operation(summary = "Create a Guarantee Party record")
     public Mono<ResponseEntity<GuaranteePartyDTO>> create(
-            @PathVariable Long guaranteeRecordId,
-            @RequestBody GuaranteePartyDTO dto) {
+            @PathVariable UUID guaranteeRecordId,
+            @Valid @RequestBody GuaranteePartyDTO dto) {
 
         return service.create(guaranteeRecordId, dto)
                 .map(ResponseEntity::ok);
@@ -43,8 +46,8 @@ public class GuaranteePartyController {
     @GetMapping("/{guaranteePartyId}")
     @Operation(summary = "Get a Guarantee Party by ID")
     public Mono<ResponseEntity<GuaranteePartyDTO>> getById(
-            @PathVariable Long guaranteeRecordId,
-            @PathVariable Long guaranteePartyId) {
+            @PathVariable UUID guaranteeRecordId,
+            @PathVariable UUID guaranteePartyId) {
 
         return service.getById(guaranteeRecordId, guaranteePartyId)
                 .map(ResponseEntity::ok);
@@ -53,9 +56,9 @@ public class GuaranteePartyController {
     @PutMapping("/{guaranteePartyId}")
     @Operation(summary = "Update a Guarantee Party")
     public Mono<ResponseEntity<GuaranteePartyDTO>> update(
-            @PathVariable Long guaranteeRecordId,
-            @PathVariable Long guaranteePartyId,
-            @RequestBody GuaranteePartyDTO dto) {
+            @PathVariable UUID guaranteeRecordId,
+            @PathVariable UUID guaranteePartyId,
+            @Valid @RequestBody GuaranteePartyDTO dto) {
 
         return service.update(guaranteeRecordId, guaranteePartyId, dto)
                 .map(ResponseEntity::ok);
@@ -64,8 +67,8 @@ public class GuaranteePartyController {
     @DeleteMapping("/{guaranteePartyId}")
     @Operation(summary = "Delete a Guarantee Party record")
     public Mono<ResponseEntity<Void>> delete(
-            @PathVariable Long guaranteeRecordId,
-            @PathVariable Long guaranteePartyId) {
+            @PathVariable UUID guaranteeRecordId,
+            @PathVariable UUID guaranteePartyId) {
 
         return service.delete(guaranteeRecordId, guaranteePartyId)
                 .map(ResponseEntity::ok);

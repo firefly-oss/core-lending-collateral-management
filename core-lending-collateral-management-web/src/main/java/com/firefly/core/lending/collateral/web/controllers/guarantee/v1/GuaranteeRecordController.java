@@ -12,6 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import jakarta.validation.Valid;
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/v1/api/guarantees")
 @Tag(name = "GuaranteeRecord", description = "Operations for Guarantee Records")
@@ -31,14 +34,14 @@ public class GuaranteeRecordController {
 
     @PostMapping
     @Operation(summary = "Create a GuaranteeRecord")
-    public Mono<ResponseEntity<GuaranteeRecordDTO>> create(@RequestBody GuaranteeRecordDTO dto) {
+    public Mono<ResponseEntity<GuaranteeRecordDTO>> create(@Valid @RequestBody GuaranteeRecordDTO dto) {
         return service.create(dto)
                 .map(ResponseEntity::ok);
     }
 
     @GetMapping("/{guaranteeRecordId}")
     @Operation(summary = "Get a GuaranteeRecord by ID")
-    public Mono<ResponseEntity<GuaranteeRecordDTO>> getById(@PathVariable Long guaranteeRecordId) {
+    public Mono<ResponseEntity<GuaranteeRecordDTO>> getById(@PathVariable UUID guaranteeRecordId) {
         return service.getById(guaranteeRecordId)
                 .map(ResponseEntity::ok);
     }
@@ -46,8 +49,8 @@ public class GuaranteeRecordController {
     @PutMapping("/{guaranteeRecordId}")
     @Operation(summary = "Update a GuaranteeRecord")
     public Mono<ResponseEntity<GuaranteeRecordDTO>> update(
-            @PathVariable Long guaranteeRecordId,
-            @RequestBody GuaranteeRecordDTO dto) {
+            @PathVariable UUID guaranteeRecordId,
+            @Valid @RequestBody GuaranteeRecordDTO dto) {
 
         return service.update(guaranteeRecordId, dto)
                 .map(ResponseEntity::ok);
@@ -55,7 +58,7 @@ public class GuaranteeRecordController {
 
     @DeleteMapping("/{guaranteeRecordId}")
     @Operation(summary = "Delete a GuaranteeRecord")
-    public Mono<ResponseEntity<Void>> delete(@PathVariable Long guaranteeRecordId) {
+    public Mono<ResponseEntity<Void>> delete(@PathVariable UUID guaranteeRecordId) {
         return service.delete(guaranteeRecordId)
                 .map(ResponseEntity::ok);
     }

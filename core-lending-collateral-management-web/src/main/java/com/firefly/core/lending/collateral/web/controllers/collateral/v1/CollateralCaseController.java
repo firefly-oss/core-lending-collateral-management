@@ -12,6 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import jakarta.validation.Valid;
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/v1/collateral-cases")
 @Tag(name = "CollateralCase", description = "Operations for Collateral Cases")
@@ -31,14 +34,14 @@ public class CollateralCaseController {
 
     @PostMapping
     @Operation(summary = "Create CollateralCase")
-    public Mono<ResponseEntity<CollateralCaseDTO>> create(@RequestBody CollateralCaseDTO dto) {
+    public Mono<ResponseEntity<CollateralCaseDTO>> create(@Valid @RequestBody CollateralCaseDTO dto) {
         return service.create(dto)
                 .map(ResponseEntity::ok);
     }
 
     @GetMapping("/{collateralCaseId}")
     @Operation(summary = "Get CollateralCase by ID")
-    public Mono<ResponseEntity<CollateralCaseDTO>> getById(@PathVariable Long collateralCaseId) {
+    public Mono<ResponseEntity<CollateralCaseDTO>> getById(@PathVariable UUID collateralCaseId) {
         return service.getById(collateralCaseId)
                 .map(ResponseEntity::ok);
     }
@@ -46,15 +49,15 @@ public class CollateralCaseController {
     @PutMapping("/{collateralCaseId}")
     @Operation(summary = "Update CollateralCase")
     public Mono<ResponseEntity<CollateralCaseDTO>> update(
-            @PathVariable Long collateralCaseId,
-            @RequestBody CollateralCaseDTO dto) {
+            @PathVariable UUID collateralCaseId,
+            @Valid @RequestBody CollateralCaseDTO dto) {
         return service.update(collateralCaseId, dto)
                 .map(ResponseEntity::ok);
     }
 
     @DeleteMapping("/{collateralCaseId}")
     @Operation(summary = "Delete CollateralCase")
-    public Mono<ResponseEntity<Void>> delete(@PathVariable Long collateralCaseId) {
+    public Mono<ResponseEntity<Void>> delete(@PathVariable UUID collateralCaseId) {
         return service.delete(collateralCaseId)
                 .map(ResponseEntity::ok);
     }
