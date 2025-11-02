@@ -59,15 +59,63 @@ public class CollateralValuationDTO {
     @Size(min = 1, max = 200, message = "Valuation provider must be between 1 and 200 characters")
     private String valuationProvider;
 
+    @Size(max = 255, message = "Appraiser name must not exceed 255 characters")
+    private String appraiserName;
+
+    @Size(max = 100, message = "Appraiser license must not exceed 100 characters")
+    private String appraiserLicense;
+
     @NotNull(message = "Valuation date is required")
     @PastOrPresent(message = "Valuation date cannot be in the future")
     private LocalDate valuationDate;
 
+    private LocalDate expiryDate;
+
     @NotNull(message = "Currency code is required")
     private CurrencyCodeEnum currencyCode;
 
+    // Additional valuation components
+    @DecimalMin(value = "0.0", message = "Market value must be 0 or greater")
+    private BigDecimal marketValue;
+
+    @DecimalMin(value = "0.0", message = "Rental value must be 0 or greater")
+    private BigDecimal rentalValue;
+
+    @DecimalMin(value = "0.0", message = "Replacement cost must be 0 or greater")
+    private BigDecimal replacementCost;
+
+    @DecimalMin(value = "0.0", message = "Land value must be 0 or greater")
+    private BigDecimal landValue;
+
+    @DecimalMin(value = "0.0", message = "Building value must be 0 or greater")
+    private BigDecimal buildingValue;
+
+    @DecimalMin(value = "0.0", message = "Salvage value must be 0 or greater")
+    private BigDecimal salvageValue;
+
+    // Appraisal details
+    private String comparableAssets; // JSON array
+
+    @Size(max = 2000, message = "Methodology must not exceed 2000 characters")
+    private String methodology;
+
+    @Size(max = 2000, message = "Assumptions must not exceed 2000 characters")
+    private String assumptions;
+
+    @Size(max = 2000, message = "Limitations must not exceed 2000 characters")
+    private String limitations;
+
+    private Boolean requiresRepairs;
+
+    @Size(max = 2000, message = "Required repairs must not exceed 2000 characters")
+    private String requiredRepairs;
+
+    @DecimalMin(value = "0.0", message = "Repair cost must be 0 or greater")
+    private BigDecimal repairCost;
+
     @Size(max = 1000, message = "Notes must not exceed 1000 characters")
     private String notes;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
