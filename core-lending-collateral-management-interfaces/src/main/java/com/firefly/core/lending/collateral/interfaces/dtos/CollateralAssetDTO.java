@@ -17,6 +17,7 @@
 
 package com.firefly.core.lending.collateral.interfaces.dtos;
 
+import com.firefly.core.lending.collateral.interfaces.enums.AssetTypeEnum;
 import com.firefly.core.utils.annotations.FilterableId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -43,13 +44,15 @@ public class CollateralAssetDTO {
     @NotNull(message = "Collateral case ID is required")
     private UUID collateralCaseId;
 
-    @FilterableId
-    @NotNull(message = "Asset type ID is required")
-    private UUID assetTypeId;
+    @NotNull(message = "Asset type is required")
+    private AssetTypeEnum assetType;
 
     @NotNull(message = "Asset description is required")
     @Size(min = 1, max = 500, message = "Asset description must be between 1 and 500 characters")
     private String assetDescription;
+
+    @Size(max = 255, message = "Asset identifier must not exceed 255 characters")
+    private String assetIdentifier;
 
     @DecimalMin(value = "0.0", inclusive = false, message = "Declared value must be greater than 0")
     private BigDecimal declaredValue;
