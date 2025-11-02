@@ -58,7 +58,6 @@ public class DtoValidationTest {
     @DisplayName("CollateralCaseDTO - Valid object should pass validation")
     void testCollateralCaseDtoValid() {
         CollateralCaseDTO dto = CollateralCaseDTO.builder()
-                .loanContractId(UUID.randomUUID())
                 .loanApplicationId(UUID.randomUUID())
                 .referenceNumber("REF-12345")
                 .collateralStatus(CollateralStatusEnum.ACTIVE)
@@ -74,14 +73,12 @@ public class DtoValidationTest {
     void testCollateralCaseDtoNullRequiredFields() {
         // Create DTO with explicit null values for required fields
         CollateralCaseDTO dto = new CollateralCaseDTO();
-        dto.setLoanContractId(null);
         dto.setLoanApplicationId(null);
         dto.setCollateralStatus(null);
 
         Set<ConstraintViolation<CollateralCaseDTO>> violations = validator.validate(dto);
-        assertEquals(3, violations.size(), "Should have 3 violations for required fields");
+        assertEquals(2, violations.size(), "Should have 2 violations for required fields");
 
-        assertTrue(violations.stream().anyMatch(v -> v.getMessage().equals("Loan contract ID is required")));
         assertTrue(violations.stream().anyMatch(v -> v.getMessage().equals("Loan application ID is required")));
         assertTrue(violations.stream().anyMatch(v -> v.getMessage().equals("Collateral status is required")));
     }
@@ -90,7 +87,6 @@ public class DtoValidationTest {
     @DisplayName("CollateralCaseDTO - Size constraints validation")
     void testCollateralCaseDtoSizeConstraints() {
         CollateralCaseDTO dto = new CollateralCaseDTO();
-        dto.setLoanContractId(UUID.randomUUID());
         dto.setLoanApplicationId(UUID.randomUUID());
         dto.setCollateralStatus(CollateralStatusEnum.ACTIVE);
         dto.setReferenceNumber("A".repeat(51)); // Exceeds 50 character limit
@@ -108,7 +104,7 @@ public class DtoValidationTest {
     void testCollateralAssetDtoValid() {
         CollateralAssetDTO dto = CollateralAssetDTO.builder()
                 .collateralCaseId(UUID.randomUUID())
-                .assetTypeId(UUID.randomUUID())
+                .assetType(com.firefly.core.lending.collateral.interfaces.enums.AssetTypeEnum.REAL_ESTATE)
                 .assetDescription("Valid asset description")
                 .declaredValue(BigDecimal.valueOf(100000))
                 .isPrimary(true)
@@ -128,7 +124,7 @@ public class DtoValidationTest {
         assertEquals(4, violations.size(), "Should have 4 violations for required fields");
 
         assertTrue(violations.stream().anyMatch(v -> v.getMessage().contains("Collateral case ID is required")));
-        assertTrue(violations.stream().anyMatch(v -> v.getMessage().contains("Asset type ID is required")));
+        assertTrue(violations.stream().anyMatch(v -> v.getMessage().contains("Asset type is required")));
         assertTrue(violations.stream().anyMatch(v -> v.getMessage().contains("Asset description is required")));
         assertTrue(violations.stream().anyMatch(v -> v.getMessage().contains("Primary asset indicator is required")));
     }
@@ -138,7 +134,7 @@ public class DtoValidationTest {
     void testCollateralAssetDtoValueConstraints() {
         CollateralAssetDTO dto = CollateralAssetDTO.builder()
                 .collateralCaseId(UUID.randomUUID())
-                .assetTypeId(UUID.randomUUID())
+                .assetType(com.firefly.core.lending.collateral.interfaces.enums.AssetTypeEnum.REAL_ESTATE)
                 .assetDescription("") // Empty description
                 .declaredValue(BigDecimal.ZERO) // Invalid value (must be > 0)
                 .isPrimary(true)
@@ -286,7 +282,6 @@ public class DtoValidationTest {
     @DisplayName("GuaranteeRecordDTO - Valid object should pass validation")
     void testGuaranteeRecordDtoValid() {
         GuaranteeRecordDTO dto = GuaranteeRecordDTO.builder()
-                .loanContractId(UUID.randomUUID())
                 .loanApplicationId(UUID.randomUUID())
                 .guaranteeType(GuaranteeTypeEnum.PERSONAL)
                 .guaranteeAmount(BigDecimal.valueOf(50000))
@@ -304,7 +299,6 @@ public class DtoValidationTest {
     @DisplayName("GuaranteeRecordDTO - Required fields validation")
     void testGuaranteeRecordDtoRequiredFields() {
         GuaranteeRecordDTO dto = new GuaranteeRecordDTO();
-        dto.setLoanContractId(null);
         dto.setLoanApplicationId(null);
         dto.setGuaranteeType(null);
         dto.setGuaranteeAmount(null);
@@ -320,9 +314,8 @@ public class DtoValidationTest {
             System.out.println("  - " + violation.getPropertyPath() + ": " + violation.getMessage());
         }
 
-        assertEquals(7, violations.size(), "Should have 7 violations for required fields");
+        assertEquals(6, violations.size(), "Should have 6 violations for required fields");
 
-        assertTrue(violations.stream().anyMatch(v -> v.getMessage().equals("Loan contract ID is required")));
         assertTrue(violations.stream().anyMatch(v -> v.getMessage().equals("Loan application ID is required")));
         assertTrue(violations.stream().anyMatch(v -> v.getMessage().equals("Guarantee type is required")));
         assertTrue(violations.stream().anyMatch(v -> v.getMessage().equals("Guarantee amount is required")));
@@ -335,7 +328,6 @@ public class DtoValidationTest {
     @DisplayName("GuaranteeRecordDTO - Value and date constraints validation")
     void testGuaranteeRecordDtoConstraints() {
         GuaranteeRecordDTO dto = GuaranteeRecordDTO.builder()
-                .loanContractId(UUID.randomUUID())
                 .loanApplicationId(UUID.randomUUID())
                 .guaranteeType(GuaranteeTypeEnum.PERSONAL)
                 .guaranteeAmount(BigDecimal.ZERO) // Invalid amount (must be > 0)

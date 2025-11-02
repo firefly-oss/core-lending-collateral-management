@@ -24,7 +24,6 @@ import com.firefly.core.lending.collateral.interfaces.dtos.CollateralValuationDT
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
@@ -45,7 +44,7 @@ public class CollateralValuationController {
     public Mono<ResponseEntity<PaginationResponse<CollateralValuationDTO>>> findAll(
             @PathVariable UUID collateralCaseId,
             @PathVariable UUID collateralAssetId,
-            @ParameterObject @ModelAttribute FilterRequest<CollateralValuationDTO> filterRequest) {
+            @Valid @RequestBody FilterRequest<CollateralValuationDTO> filterRequest) {
 
         return service.findAll(collateralCaseId, collateralAssetId, filterRequest)
                 .map(ResponseEntity::ok);

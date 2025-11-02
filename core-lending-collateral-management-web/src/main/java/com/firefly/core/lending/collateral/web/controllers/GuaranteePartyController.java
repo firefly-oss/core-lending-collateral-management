@@ -24,7 +24,6 @@ import com.firefly.core.lending.collateral.interfaces.dtos.GuaranteePartyDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
@@ -33,7 +32,7 @@ import jakarta.validation.Valid;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/v1/api/guarantees/{guaranteeRecordId}/parties")
+@RequestMapping("/api/v1/guarantees/{guaranteeRecordId}/parties")
 @Tag(name = "GuaranteeParty", description = "Operations for Parties associated with a GuaranteeRecord")
 @RequiredArgsConstructor
 public class GuaranteePartyController {
@@ -44,7 +43,7 @@ public class GuaranteePartyController {
     @Operation(summary = "List or Search Guarantee Parties")
     public Mono<ResponseEntity<PaginationResponse<GuaranteePartyDTO>>> findAll(
             @PathVariable UUID guaranteeRecordId,
-            @ParameterObject @ModelAttribute FilterRequest<GuaranteePartyDTO> filterRequest) {
+            @Valid @RequestBody FilterRequest<GuaranteePartyDTO> filterRequest) {
 
         return service.findAll(guaranteeRecordId, filterRequest)
                 .map(ResponseEntity::ok);

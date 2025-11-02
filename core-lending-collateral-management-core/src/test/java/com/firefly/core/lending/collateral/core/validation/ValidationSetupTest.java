@@ -59,7 +59,6 @@ public class ValidationSetupTest {
     @DisplayName("Valid DTO passes validation")
     void testValidDtoPassesValidation() {
         CollateralCaseDTO dto = CollateralCaseDTO.builder()
-                .loanContractId(UUID.randomUUID())
                 .loanApplicationId(UUID.randomUUID())
                 .collateralStatus(CollateralStatusEnum.ACTIVE)
                 .referenceNumber("REF-12345")
@@ -75,11 +74,11 @@ public class ValidationSetupTest {
     void testValidationAnnotationsArePresent() {
         // Verify that validation annotations are present on DTO fields
         try {
-            var loanContractIdField = CollateralCaseDTO.class.getDeclaredField("loanContractId");
-            var annotations = loanContractIdField.getAnnotations();
+            var loanApplicationIdField = CollateralCaseDTO.class.getDeclaredField("loanApplicationId");
+            var annotations = loanApplicationIdField.getAnnotations();
 
             // Print all annotations for debugging
-            System.out.println("Annotations on loanContractId field:");
+            System.out.println("Annotations on loanApplicationId field:");
             for (var annotation : annotations) {
                 System.out.println("  - " + annotation.annotationType().getName() + ": " + annotation);
             }
@@ -93,9 +92,9 @@ public class ValidationSetupTest {
                 }
             }
 
-            assertTrue(hasValidationAnnotation, "loanContractId field should have validation annotations");
+            assertTrue(hasValidationAnnotation, "loanApplicationId field should have validation annotations");
         } catch (NoSuchFieldException e) {
-            fail("loanContractId field should exist on CollateralCaseDTO");
+            fail("loanApplicationId field should exist on CollateralCaseDTO");
         }
     }
 
@@ -105,7 +104,6 @@ public class ValidationSetupTest {
         // Create a DTO that should definitely trigger validation
         CollateralCaseDTO dto = new CollateralCaseDTO();
         // Set all fields to null to trigger @NotNull violations
-        dto.setLoanContractId(null);
         dto.setLoanApplicationId(null);
         dto.setCollateralStatus(null);
 

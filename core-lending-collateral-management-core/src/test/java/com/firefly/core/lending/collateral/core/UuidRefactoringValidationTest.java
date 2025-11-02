@@ -51,13 +51,11 @@ public class UuidRefactoringValidationTest {
     void testCollateralCaseDtoUuidFields() {
         // Given
         UUID collateralCaseId = UUID.randomUUID();
-        UUID loanContractId = UUID.randomUUID();
         UUID loanApplicationId = UUID.randomUUID();
 
         // When
         CollateralCaseDTO dto = CollateralCaseDTO.builder()
                 .collateralCaseId(collateralCaseId)
-                .loanContractId(loanContractId)
                 .loanApplicationId(loanApplicationId)
                 .collateralStatus(CollateralStatusEnum.ACTIVE)
                 .remarks("Test collateral case")
@@ -67,13 +65,10 @@ public class UuidRefactoringValidationTest {
 
         // Then
         assertNotNull(dto.getCollateralCaseId());
-        assertNotNull(dto.getLoanContractId());
         assertNotNull(dto.getLoanApplicationId());
         assertEquals(collateralCaseId, dto.getCollateralCaseId());
-        assertEquals(loanContractId, dto.getLoanContractId());
         assertEquals(loanApplicationId, dto.getLoanApplicationId());
         assertTrue(dto.getCollateralCaseId() instanceof UUID);
-        assertTrue(dto.getLoanContractId() instanceof UUID);
         assertTrue(dto.getLoanApplicationId() instanceof UUID);
     }
 
@@ -83,15 +78,15 @@ public class UuidRefactoringValidationTest {
         // Given
         UUID collateralAssetId = UUID.randomUUID();
         UUID collateralCaseId = UUID.randomUUID();
-        UUID assetTypeId = UUID.randomUUID();
 
         // When
         CollateralAssetDTO dto = CollateralAssetDTO.builder()
                 .collateralAssetId(collateralAssetId)
                 .collateralCaseId(collateralCaseId)
-                .assetTypeId(assetTypeId)
+                .assetType(com.firefly.core.lending.collateral.interfaces.enums.AssetTypeEnum.REAL_ESTATE)
                 .assetDescription("Test asset")
                 .declaredValue(BigDecimal.valueOf(100000))
+                .isPrimary(true)
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .build();
@@ -99,13 +94,11 @@ public class UuidRefactoringValidationTest {
         // Then
         assertNotNull(dto.getCollateralAssetId());
         assertNotNull(dto.getCollateralCaseId());
-        assertNotNull(dto.getAssetTypeId());
+        assertNotNull(dto.getAssetType());
         assertEquals(collateralAssetId, dto.getCollateralAssetId());
         assertEquals(collateralCaseId, dto.getCollateralCaseId());
-        assertEquals(assetTypeId, dto.getAssetTypeId());
         assertTrue(dto.getCollateralAssetId() instanceof UUID);
         assertTrue(dto.getCollateralCaseId() instanceof UUID);
-        assertTrue(dto.getAssetTypeId() instanceof UUID);
     }
 
     @Test
@@ -143,13 +136,11 @@ public class UuidRefactoringValidationTest {
     void testGuaranteeRecordDtoUuidFields() {
         // Given
         UUID guaranteeRecordId = UUID.randomUUID();
-        UUID loanContractId = UUID.randomUUID();
         UUID loanApplicationId = UUID.randomUUID();
 
         // When
         GuaranteeRecordDTO dto = GuaranteeRecordDTO.builder()
                 .guaranteeRecordId(guaranteeRecordId)
-                .loanContractId(loanContractId)
                 .loanApplicationId(loanApplicationId)
                 .guaranteeType(GuaranteeTypeEnum.PERSONAL)
                 .guaranteeStatus(GuaranteeStatusEnum.ACTIVE)
@@ -163,13 +154,10 @@ public class UuidRefactoringValidationTest {
 
         // Then
         assertNotNull(dto.getGuaranteeRecordId());
-        assertNotNull(dto.getLoanContractId());
         assertNotNull(dto.getLoanApplicationId());
         assertEquals(guaranteeRecordId, dto.getGuaranteeRecordId());
-        assertEquals(loanContractId, dto.getLoanContractId());
         assertEquals(loanApplicationId, dto.getLoanApplicationId());
         assertTrue(dto.getGuaranteeRecordId() instanceof UUID);
-        assertTrue(dto.getLoanContractId() instanceof UUID);
         assertTrue(dto.getLoanApplicationId() instanceof UUID);
     }
 
@@ -241,14 +229,12 @@ public class UuidRefactoringValidationTest {
         // When
         CollateralCaseDTO dto = CollateralCaseDTO.builder()
                 .collateralCaseId(null)
-                .loanContractId(null)
                 .loanApplicationId(null)
                 .collateralStatus(CollateralStatusEnum.ACTIVE)
                 .build();
 
         // Then
         assertNull(dto.getCollateralCaseId());
-        assertNull(dto.getLoanContractId());
         assertNull(dto.getLoanApplicationId());
     }
 
