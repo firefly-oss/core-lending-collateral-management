@@ -55,11 +55,61 @@ public class CollateralValuation {
     @Column("valuation_provider")
     private String valuationProvider;
 
+    @Column("appraiser_name")
+    private String appraiserName;
+
+    @Column("appraiser_license")
+    private String appraiserLicense;
+
     @Column("valuation_date")
     private LocalDate valuationDate;
 
+    @Column("expiry_date")
+    private LocalDate expiryDate;
+
     @Column("currency_code")
     private CurrencyCodeEnum currencyCode;
+
+    // Additional valuation components (for real estate appraisals)
+    @Column("market_value")
+    private BigDecimal marketValue;
+
+    @Column("rental_value")
+    private BigDecimal rentalValue;
+
+    @Column("replacement_cost")
+    private BigDecimal replacementCost;
+
+    @Column("land_value")
+    private BigDecimal landValue;
+
+    @Column("building_value")
+    private BigDecimal buildingValue;
+
+    @Column("salvage_value")
+    private BigDecimal salvageValue;
+
+    // Appraisal details
+    @Column("comparable_assets")
+    private String comparableAssets; // JSON array
+
+    @Column("methodology")
+    private String methodology;
+
+    @Column("assumptions")
+    private String assumptions;
+
+    @Column("limitations")
+    private String limitations;
+
+    @Column("requires_repairs")
+    private Boolean requiresRepairs;
+
+    @Column("required_repairs")
+    private String requiredRepairs;
+
+    @Column("repair_cost")
+    private BigDecimal repairCost;
 
     @Column("notes")
     private String notes;

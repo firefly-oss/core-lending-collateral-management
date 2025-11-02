@@ -17,6 +17,7 @@
 
 package com.firefly.core.lending.collateral.models.entities;
 
+import com.firefly.core.lending.collateral.interfaces.enums.AssetTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -43,11 +44,14 @@ public class CollateralAsset {
     @Column("collateral_case_id")
     private UUID collateralCaseId;
 
-    @Column("asset_type_id")
-    private UUID assetTypeId;
+    @Column("asset_type")
+    private AssetTypeEnum assetType;
 
     @Column("asset_description")
     private String assetDescription;
+
+    @Column("asset_identifier")
+    private String assetIdentifier;
 
     @Column("declared_value")
     private BigDecimal declaredValue;
