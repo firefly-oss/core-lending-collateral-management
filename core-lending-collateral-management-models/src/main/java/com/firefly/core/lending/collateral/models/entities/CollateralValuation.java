@@ -15,10 +15,10 @@
  */
 
 
-package com.firefly.core.lending.collateral.models.entities.collateral.v1;
+package com.firefly.core.lending.collateral.models.entities;
 
-import com.firefly.core.lending.collateral.interfaces.enums.collateral.v1.CurrencyCodeEnum;
-import com.firefly.core.lending.collateral.interfaces.enums.collateral.v1.ValuationMethodEnum;
+import com.firefly.core.lending.collateral.interfaces.enums.CurrencyCodeEnum;
+import com.firefly.core.lending.collateral.interfaces.enums.ValuationMethodEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

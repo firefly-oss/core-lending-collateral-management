@@ -15,15 +15,16 @@
  */
 
 
-package com.firefly.core.lending.collateral.core.services.collateral.v1;
+package com.firefly.core.lending.collateral.core.services.impl;
 
 import com.firefly.common.core.filters.FilterRequest;
 import com.firefly.common.core.filters.FilterUtils;
 import com.firefly.common.core.queries.PaginationResponse;
-import com.firefly.core.lending.collateral.core.mappers.collateral.v1.CollateralValuationMapper;
-import com.firefly.core.lending.collateral.interfaces.dtos.collateral.v1.CollateralValuationDTO;
-import com.firefly.core.lending.collateral.models.entities.collateral.v1.CollateralValuation;
-import com.firefly.core.lending.collateral.models.repositories.collateral.v1.CollateralValuationRepository;
+import com.firefly.core.lending.collateral.core.mappers.CollateralValuationMapper;
+import com.firefly.core.lending.collateral.core.services.CollateralValuationService;
+import com.firefly.core.lending.collateral.interfaces.dtos.CollateralValuationDTO;
+import com.firefly.core.lending.collateral.models.entities.CollateralValuation;
+import com.firefly.core.lending.collateral.models.repositories.CollateralValuationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

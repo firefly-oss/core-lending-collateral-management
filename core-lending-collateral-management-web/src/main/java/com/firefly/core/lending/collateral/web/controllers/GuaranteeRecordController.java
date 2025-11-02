@@ -15,12 +15,12 @@
  */
 
 
-package com.firefly.core.lending.collateral.web.controllers.guarantee.v1;
+package com.firefly.core.lending.collateral.web.controllers;
 
 import com.firefly.common.core.filters.FilterRequest;
 import com.firefly.common.core.queries.PaginationResponse;
-import com.firefly.core.lending.collateral.core.services.guarantee.v1.GuaranteeRecordService;
-import com.firefly.core.lending.collateral.interfaces.dtos.guarantee.v1.GuaranteeRecordDTO;
+import com.firefly.core.lending.collateral.core.services.GuaranteeRecordService;
+import com.firefly.core.lending.collateral.interfaces.dtos.GuaranteeRecordDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

@@ -15,10 +15,10 @@
  */
 
 
-package com.firefly.core.lending.collateral.models.entities.guarantee.v1;
+package com.firefly.core.lending.collateral.models.entities;
 
-import com.firefly.core.lending.collateral.interfaces.enums.guarantee.v1.GuaranteeStatusEnum;
-import com.firefly.core.lending.collateral.interfaces.enums.guarantee.v1.GuaranteeTypeEnum;
+import com.firefly.core.lending.collateral.interfaces.enums.GuaranteeStatusEnum;
+import com.firefly.core.lending.collateral.interfaces.enums.GuaranteeTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

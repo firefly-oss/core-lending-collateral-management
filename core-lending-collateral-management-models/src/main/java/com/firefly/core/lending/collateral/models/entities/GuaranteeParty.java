@@ -15,9 +15,9 @@
  */
 
 
-package com.firefly.core.lending.collateral.models.entities.guarantee.v1;
+package com.firefly.core.lending.collateral.models.entities;
 
-import com.firefly.core.lending.collateral.interfaces.enums.guarantee.v1.GuaranteeRoleEnum;
+import com.firefly.core.lending.collateral.interfaces.enums.GuaranteeRoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

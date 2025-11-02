@@ -15,10 +15,10 @@
  */
 
 
-package com.firefly.core.lending.collateral.core.mappers.guarantee.v1;
+package com.firefly.core.lending.collateral.core.mappers;
 
-import com.firefly.core.lending.collateral.interfaces.dtos.guarantee.v1.GuaranteePartyDTO;
-import com.firefly.core.lending.collateral.models.entities.guarantee.v1.GuaranteeParty;
+import com.firefly.core.lending.collateral.interfaces.dtos.GuaranteePartyDTO;
+import com.firefly.core.lending.collateral.models.entities.GuaranteeParty;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

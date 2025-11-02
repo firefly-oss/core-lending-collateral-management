@@ -15,10 +15,9 @@
  */
 
 
-package com.firefly.core.lending.collateral.models.repositories.collateral.v1;
+package com.firefly.core.lending.collateral.models.repositories;
 
-import com.firefly.core.lending.collateral.models.entities.collateral.v1.CollateralCase;
-import com.firefly.core.lending.collateral.models.repositories.BaseRepository;
+import com.firefly.core.lending.collateral.models.entities.CollateralCase;
 
 import java.util.UUID;
 

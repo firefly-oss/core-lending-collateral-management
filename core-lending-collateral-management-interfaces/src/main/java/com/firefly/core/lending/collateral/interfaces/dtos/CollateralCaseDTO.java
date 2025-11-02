@@ -15,9 +15,9 @@
  */
 
 
-package com.firefly.core.lending.collateral.interfaces.dtos.collateral.v1;
+package com.firefly.core.lending.collateral.interfaces.dtos;
 
-import com.firefly.core.lending.collateral.interfaces.enums.collateral.v1.CollateralStatusEnum;
+import com.firefly.core.lending.collateral.interfaces.enums.CollateralStatusEnum;
 import com.firefly.core.utils.annotations.FilterableId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

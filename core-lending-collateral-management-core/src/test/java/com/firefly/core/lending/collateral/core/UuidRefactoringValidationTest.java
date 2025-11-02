@@ -17,17 +17,17 @@
 
 package com.firefly.core.lending.collateral.core;
 
-import com.firefly.core.lending.collateral.interfaces.dtos.collateral.v1.CollateralCaseDTO;
-import com.firefly.core.lending.collateral.interfaces.dtos.collateral.v1.CollateralAssetDTO;
-import com.firefly.core.lending.collateral.interfaces.dtos.collateral.v1.CollateralValuationDTO;
-import com.firefly.core.lending.collateral.interfaces.dtos.guarantee.v1.GuaranteeRecordDTO;
-import com.firefly.core.lending.collateral.interfaces.dtos.guarantee.v1.GuaranteeValuationDTO;
-import com.firefly.core.lending.collateral.interfaces.enums.collateral.v1.CollateralStatusEnum;
-import com.firefly.core.lending.collateral.interfaces.enums.collateral.v1.CurrencyCodeEnum;
-import com.firefly.core.lending.collateral.interfaces.enums.collateral.v1.ValuationMethodEnum;
-import com.firefly.core.lending.collateral.interfaces.enums.guarantee.v1.GuaranteeStatusEnum;
-import com.firefly.core.lending.collateral.interfaces.enums.guarantee.v1.GuaranteeTypeEnum;
-import com.firefly.core.lending.collateral.interfaces.enums.guarantee.v1.GuaranteeRiskGradeEnum;
+import com.firefly.core.lending.collateral.interfaces.dtos.CollateralCaseDTO;
+import com.firefly.core.lending.collateral.interfaces.dtos.CollateralAssetDTO;
+import com.firefly.core.lending.collateral.interfaces.dtos.CollateralValuationDTO;
+import com.firefly.core.lending.collateral.interfaces.dtos.GuaranteeRecordDTO;
+import com.firefly.core.lending.collateral.interfaces.dtos.GuaranteeValuationDTO;
+import com.firefly.core.lending.collateral.interfaces.enums.CollateralStatusEnum;
+import com.firefly.core.lending.collateral.interfaces.enums.CurrencyCodeEnum;
+import com.firefly.core.lending.collateral.interfaces.enums.ValuationMethodEnum;
+import com.firefly.core.lending.collateral.interfaces.enums.GuaranteeStatusEnum;
+import com.firefly.core.lending.collateral.interfaces.enums.GuaranteeTypeEnum;
+import com.firefly.core.lending.collateral.interfaces.enums.GuaranteeRiskGradeEnum;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 

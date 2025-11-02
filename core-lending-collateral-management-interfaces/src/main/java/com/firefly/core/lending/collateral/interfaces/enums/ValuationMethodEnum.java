@@ -15,7 +15,7 @@
  */
 
 
-package com.firefly.core.lending.collateral.interfaces.enums.collateral.v1;
+package com.firefly.core.lending.collateral.interfaces.enums;
 
 public enum ValuationMethodEnum {
     MARKET_COMPARISON,

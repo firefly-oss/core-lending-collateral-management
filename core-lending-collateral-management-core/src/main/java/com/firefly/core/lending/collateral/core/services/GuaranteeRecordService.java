@@ -15,11 +15,11 @@
  */
 
 
-package com.firefly.core.lending.collateral.core.services.guarantee.v1;
+package com.firefly.core.lending.collateral.core.services;
 
 import com.firefly.common.core.filters.FilterRequest;
 import com.firefly.common.core.queries.PaginationResponse;
-import com.firefly.core.lending.collateral.interfaces.dtos.guarantee.v1.GuaranteeRecordDTO;
+import com.firefly.core.lending.collateral.interfaces.dtos.GuaranteeRecordDTO;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;

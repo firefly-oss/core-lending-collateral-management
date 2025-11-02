@@ -15,7 +15,7 @@
  */
 
 
-package com.firefly.core.lending.collateral.models.entities.collateral.v1;
+package com.firefly.core.lending.collateral.models.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

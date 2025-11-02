@@ -17,8 +17,8 @@
 
 package com.firefly.core.lending.collateral.core.validation;
 
-import com.firefly.core.lending.collateral.interfaces.dtos.collateral.v1.CollateralCaseDTO;
-import com.firefly.core.lending.collateral.interfaces.enums.collateral.v1.CollateralStatusEnum;
+import com.firefly.core.lending.collateral.interfaces.dtos.CollateralCaseDTO;
+import com.firefly.core.lending.collateral.interfaces.enums.CollateralStatusEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

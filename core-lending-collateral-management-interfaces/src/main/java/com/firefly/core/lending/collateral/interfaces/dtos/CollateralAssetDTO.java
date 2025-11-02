@@ -15,7 +15,7 @@
  */
 
 
-package com.firefly.core.lending.collateral.interfaces.dtos.collateral.v1;
+package com.firefly.core.lending.collateral.interfaces.dtos;
 
 import com.firefly.core.utils.annotations.FilterableId;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -15,7 +15,7 @@
  */
 
 
-package com.firefly.core.lending.collateral.interfaces.enums.guarantee.v1;
+package com.firefly.core.lending.collateral.interfaces.enums;
 
 public enum GuaranteeRiskGradeEnum {
     LOW,

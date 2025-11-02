@@ -15,10 +15,9 @@
  */
 
 
-package com.firefly.core.lending.collateral.models.repositories.guarantee.v1;
+package com.firefly.core.lending.collateral.models.repositories;
 
-import com.firefly.core.lending.collateral.models.entities.guarantee.v1.GuaranteeValuation;
-import com.firefly.core.lending.collateral.models.repositories.BaseRepository;
+import com.firefly.core.lending.collateral.models.entities.GuaranteeValuation;
 
 import java.util.UUID;
 

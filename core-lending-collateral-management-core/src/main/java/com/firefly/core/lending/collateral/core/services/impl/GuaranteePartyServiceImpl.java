@@ -15,15 +15,16 @@
  */
 
 
-package com.firefly.core.lending.collateral.core.services.guarantee.v1;
+package com.firefly.core.lending.collateral.core.services.impl;
 
 import com.firefly.common.core.filters.FilterRequest;
 import com.firefly.common.core.filters.FilterUtils;
 import com.firefly.common.core.queries.PaginationResponse;
-import com.firefly.core.lending.collateral.core.mappers.guarantee.v1.GuaranteePartyMapper;
-import com.firefly.core.lending.collateral.interfaces.dtos.guarantee.v1.GuaranteePartyDTO;
-import com.firefly.core.lending.collateral.models.entities.guarantee.v1.GuaranteeParty;
-import com.firefly.core.lending.collateral.models.repositories.guarantee.v1.GuaranteePartyRepository;
+import com.firefly.core.lending.collateral.core.mappers.GuaranteePartyMapper;
+import com.firefly.core.lending.collateral.core.services.GuaranteePartyService;
+import com.firefly.core.lending.collateral.interfaces.dtos.GuaranteePartyDTO;
+import com.firefly.core.lending.collateral.models.entities.GuaranteeParty;
+import com.firefly.core.lending.collateral.models.repositories.GuaranteePartyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
