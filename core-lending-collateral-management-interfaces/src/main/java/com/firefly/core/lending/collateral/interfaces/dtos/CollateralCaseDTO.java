@@ -40,12 +40,11 @@ public class CollateralCaseDTO {
     private UUID collateralCaseId;
 
     @FilterableId
-    @NotNull(message = "Loan contract ID is required")
-    private UUID loanContractId;
-
-    @FilterableId
     @NotNull(message = "Loan application ID is required")
     private UUID loanApplicationId;
+
+    @FilterableId
+    private UUID loanServicingCaseId;
 
     @Size(max = 50, message = "Reference number must not exceed 50 characters")
     private String referenceNumber;

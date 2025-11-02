@@ -40,11 +40,11 @@ public class CollateralCase {
     @Column("collateral_case_id")
     private UUID collateralCaseId;
 
-    @Column("loan_contract_id")
-    private UUID loanContractId;
-
     @Column("loan_application_id")
     private UUID loanApplicationId;
+
+    @Column("loan_servicing_case_id")
+    private UUID loanServicingCaseId;
 
     @Column("reference_number")
     private String referenceNumber;

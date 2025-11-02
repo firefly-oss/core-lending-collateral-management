@@ -43,11 +43,11 @@ public class GuaranteeRecord {
     @Column("guarantee_record_id")
     private UUID guaranteeRecordId;
 
-    @Column("loan_contract_id")
-    private UUID loanContractId;
-
     @Column("loan_application_id")
     private UUID loanApplicationId;
+
+    @Column("loan_servicing_case_id")
+    private UUID loanServicingCaseId;
 
     @Column("guarantee_type")
     private GuaranteeTypeEnum guaranteeType;

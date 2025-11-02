@@ -45,12 +45,11 @@ public class GuaranteeRecordDTO {
     private UUID guaranteeRecordId;
 
     @FilterableId
-    @NotNull(message = "Loan contract ID is required")
-    private UUID loanContractId;
-
-    @FilterableId
     @NotNull(message = "Loan application ID is required")
     private UUID loanApplicationId;
+
+    @FilterableId
+    private UUID loanServicingCaseId;
 
     @NotNull(message = "Guarantee type is required")
     private GuaranteeTypeEnum guaranteeType;
