@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.firefly.core.lending.collateral.interfaces.enums.PropertyConditionEnum;
 import com.firefly.core.lending.collateral.interfaces.enums.PropertyTypeEnum;
 import com.firefly.core.lending.collateral.interfaces.enums.PropertyUseEnum;
-import com.firefly.core.utils.annotations.FilterableId;
+import org.fireflyframework.utils.annotations.FilterableId;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
