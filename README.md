@@ -1,11 +1,11 @@
 <div align="center">
 
-# 🏦 Core Lending Collateral Management
+# Core Lending Collateral Management
 
 ### Part of the Firefly OpenCore Banking Platform
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://openjdk.org/projects/jdk/21/)
+[![Java](https://img.shields.io/badge/Java-25-orange.svg)](https://openjdk.org/projects/jdk/25/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-12+-blue.svg)](https://www.postgresql.org/)
 
@@ -17,7 +17,7 @@ A reactive microservice for comprehensive collateral and guarantee management in
 
 ---
 
-## 📑 Table of Contents
+## Table of Contents
 
 - [Overview](#-overview)
 - [Features](#-features)
@@ -53,7 +53,7 @@ A reactive microservice for comprehensive collateral and guarantee management in
 
 ---
 
-## 🌟 Overview
+## Overview
 
 The **Core Lending Collateral Management** microservice is a critical component of the **Firefly OpenCore Banking Platform**, developed by **Firefly Software Solutions Inc** under the **Apache 2.0 license**. This service provides comprehensive management of collateral assets, cases, liens, valuations, insurance, monitoring, and guarantees associated with loan applications and servicing.
 
@@ -63,21 +63,21 @@ The **Core Lending Collateral Management** microservice is a critical component 
 
 ### Key Capabilities
 
-- ✅ **Complete Collateral Lifecycle Management** - From registration to release
-- ✅ **Multi-Asset Type Support** - Real estate, vehicles, securities, equipment, and more
-- ✅ **Comprehensive Valuation System** - Multiple methods, currencies, and detailed appraisals
-- ✅ **Lien Management** - Track mortgages, pledges, hypothecs, and other legal claims
-- ✅ **Insurance Tracking** - Monitor insurance policies and coverage
-- ✅ **Guarantee Management** - Personal, corporate, and bank guarantees
-- ✅ **Document Management** - Integration with ECM for document storage
-- ✅ **Reactive Architecture** - High-performance, non-blocking operations
-- ✅ **Full REST API** - OpenAPI 3.0 documented endpoints
+- **Complete Collateral Lifecycle Management** - From registration to release
+- **Multi-Asset Type Support** - Real estate, vehicles, securities, equipment, and more
+- **Comprehensive Valuation System** - Multiple methods, currencies, and detailed appraisals
+- **Lien Management** - Track mortgages, pledges, hypothecs, and other legal claims
+- **Insurance Tracking** - Monitor insurance policies and coverage
+- **Guarantee Management** - Personal, corporate, and bank guarantees
+- **Document Management** - Integration with ECM for document storage
+- **Reactive Architecture** - High-performance, non-blocking operations
+- **Full REST API** - OpenAPI 3.0 documented endpoints
 
 ---
 
-## 🚀 Features
+## Features
 
-### 🏦 Collateral Management
+### Collateral Management
 
 #### Collateral Cases
 - Manage collateral cases linked to loan applications and servicing cases
@@ -142,7 +142,7 @@ The **Core Lending Collateral Management** microservice is a critical component 
 - Start and end date tracking
 - Premium amount recording
 
-### 🛡️ Guarantee Management
+### Guarantee Management
 
 #### Guarantee Records
 - Guarantee type support:
@@ -178,7 +178,7 @@ The **Core Lending Collateral Management** microservice is a critical component 
 - Supporting documentation links
 - Settlement details
 
-### 🔧 Asset-Specific Details
+### Asset-Specific Details
 
 #### Vehicle Collateral
 - Vehicle type, make, model, year
@@ -208,7 +208,7 @@ The **Core Lending Collateral Management** microservice is a critical component 
 
 ---
 
-## 🏗 Architecture
+## Architecture
 
 This microservice follows a **reactive, multi-module Maven architecture** with clear separation of concerns and adherence to clean architecture principles.
 
@@ -282,7 +282,7 @@ core-lending-collateral-management/
 
 ---
 
-## 📊 Data Model
+## Data Model
 
 ### Entity Overview
 
@@ -322,12 +322,12 @@ The loan contract relationship is managed in the loan servicing microservice, el
 erDiagram
     COLLATERAL_CASE ||--o{ COLLATERAL_ASSET : "contains"
     COLLATERAL_CASE ||--o{ COLLATERAL_DOCUMENT : "has"
-    COLLATERAL_CASE ||--o{ COLLATERAL_MONITORING : "has"
 
     COLLATERAL_ASSET ||--o{ COLLATERAL_VALUATION : "has"
     COLLATERAL_ASSET ||--o{ COLLATERAL_LIEN : "has"
     COLLATERAL_ASSET ||--o{ COLLATERAL_PARTY : "involves"
     COLLATERAL_ASSET ||--o{ COLLATERAL_INSURANCE : "has"
+    COLLATERAL_ASSET ||--o{ COLLATERAL_MONITORING : "has"
     COLLATERAL_ASSET ||--o| VEHICLE_COLLATERAL : "details"
     COLLATERAL_ASSET ||--o| SECURITIES_COLLATERAL : "details"
     COLLATERAL_ASSET ||--o| REAL_ESTATE_PROPERTY : "details"
@@ -428,13 +428,22 @@ erDiagram
 
     COLLATERAL_MONITORING {
         UUID collateral_monitoring_id PK
-        UUID collateral_case_id FK "NOT NULL"
+        UUID collateral_asset_id FK "NOT NULL"
         DATE monitoring_date "NOT NULL"
-        ENUM monitoring_frequency
-        TEXT findings
-        TEXT recommendations
         DATE next_monitoring_date
+        ENUM monitoring_frequency
         DECIMAL current_value "18,2"
+        DECIMAL previous_value "18,2"
+        DECIMAL value_change_percentage "18,2"
+        VARCHAR condition_assessment "2000"
+        VARCHAR insurance_status "50"
+        DATE insurance_expiry_date
+        VARCHAR compliance_status "50"
+        TEXT issues_identified "JSON"
+        VARCHAR action_required "2000"
+        VARCHAR action_taken "2000"
+        UUID monitored_by
+        TEXT notes
         TIMESTAMP created_at
         TIMESTAMP updated_at
     }
@@ -594,7 +603,7 @@ erDiagram
 | **CollateralLien** | collateral_lien_id (UUID) | collateral_asset_id | lien_type, is_released | collateral_asset_id NOT NULL |
 | **CollateralParty** | collateral_party_id (UUID) | collateral_asset_id, party_id | role_code, ownership_percentage | Both FKs NOT NULL |
 | **CollateralDocument** | collateral_document_id (UUID) | collateral_case_id, document_id | document_type, document_name | collateral_case_id NOT NULL |
-| **CollateralMonitoring** | collateral_monitoring_id (UUID) | collateral_case_id | monitoring_date, findings | collateral_case_id NOT NULL |
+| **CollateralMonitoring** | collateral_monitoring_id (UUID) | collateral_asset_id | monitoring_date, current_value, compliance_status | collateral_asset_id NOT NULL |
 | **CollateralInsurance** | collateral_insurance_id (UUID) | collateral_asset_id | insurance_type, coverage_amount | collateral_asset_id NOT NULL |
 | **VehicleCollateral** | vehicle_collateral_id (UUID) | collateral_asset_id (UNIQUE) | vehicle_type, vin, make, model | collateral_asset_id UNIQUE |
 | **SecuritiesCollateral** | securities_collateral_id (UUID) | collateral_asset_id (UNIQUE) | security_type, isin, quantity | collateral_asset_id UNIQUE |
@@ -614,7 +623,7 @@ The microservice uses **19 enumerations** for type safety and data integrity:
 | Enumeration | Values | Description |
 |-------------|--------|-------------|
 | **CollateralStatusEnum** | `ACTIVE`, `RELEASED`, `UNDER_REVIEW`, `PENDING` | Status of collateral case |
-| **AssetTypeEnum** | `REAL_ESTATE`, `VEHICLE`, `EQUIPMENT`, `FINANCIAL`, `OTHER` | Type of collateral asset |
+| **AssetTypeEnum** | `REAL_ESTATE`, `VEHICLE`, `SECURITIES`, `EQUIPMENT`, `INVENTORY`, `ACCOUNTS_RECEIVABLE`, `CASH_DEPOSIT`, `PRECIOUS_METALS`, `INTELLECTUAL_PROPERTY`, `OTHER` | Type of collateral asset |
 | **ValuationMethodEnum** | `MARKET_COMPARISON`, `INCOME_APPROACH`, `COST_APPROACH`, `OTHER` | Valuation methodology |
 | **CurrencyCodeEnum** | `EUR`, `USD`, `GBP` | Currency for monetary values |
 | **LienTypeEnum** | `MORTGAGE`, `PLEDGE`, `HYPOTHEC`, `OTHER` | Type of legal claim |
@@ -640,7 +649,7 @@ The microservice uses **19 enumerations** for type safety and data integrity:
 
 ---
 
-## 📡 API Documentation
+## API Documentation
 
 The microservice exposes **80 REST endpoints** organized into **16 controllers**, all documented with OpenAPI 3.0 annotations.
 
@@ -702,11 +711,11 @@ DELETE /api/v1/collateral-cases/{caseId}/documents/{documentId}       # Delete d
 
 #### Collateral Monitoring
 ```http
-GET    /api/v1/collateral-cases/{caseId}/monitoring                    # List monitoring records
-POST   /api/v1/collateral-cases/{caseId}/monitoring                    # Create monitoring record
-GET    /api/v1/collateral-cases/{caseId}/monitoring/{monitoringId}     # Get monitoring record
-PUT    /api/v1/collateral-cases/{caseId}/monitoring/{monitoringId}     # Update monitoring record
-DELETE /api/v1/collateral-cases/{caseId}/monitoring/{monitoringId}     # Delete monitoring record
+GET    /api/v1/collateral-assets/{collateralAssetId}/monitoring                    # List monitoring records
+POST   /api/v1/collateral-assets/{collateralAssetId}/monitoring                    # Create monitoring record
+GET    /api/v1/collateral-assets/{collateralAssetId}/monitoring/{monitoringId}     # Get monitoring record
+PUT    /api/v1/collateral-assets/{collateralAssetId}/monitoring/{monitoringId}     # Update monitoring record
+DELETE /api/v1/collateral-assets/{collateralAssetId}/monitoring/{monitoringId}     # Delete monitoring record
 ```
 
 #### Collateral Insurance
@@ -800,20 +809,20 @@ DELETE /api/v1/guarantee-records/{guaranteeId}/claims/{claimId}          # Delet
 
 ### Request/Response Features
 
-- ✅ **Filtering**: All list endpoints support dynamic filtering via `FilterRequest`
-- ✅ **Pagination**: Configurable page size and page number
-- ✅ **Sorting**: Multi-field sorting support
-- ✅ **Validation**: Jakarta Bean Validation on all request bodies
-- ✅ **Error Handling**: Standardized error responses
-- ✅ **Reactive Streams**: Non-blocking Mono/Flux responses
+- **Filtering**: All list endpoints support dynamic filtering via `FilterRequest`
+- **Pagination**: Configurable page size and page number
+- **Sorting**: Multi-field sorting support
+- **Validation**: Jakarta Bean Validation on all request bodies
+- **Error Handling**: Standardized error responses
+- **Reactive Streams**: Non-blocking Mono/Flux responses
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
-- **Java 21+** - [Download](https://openjdk.org/projects/jdk/21/)
+- **Java 25+** - [Download](https://openjdk.org/projects/jdk/25/)
 - **Maven 3.8+** - [Download](https://maven.apache.org/download.cgi)
 - **PostgreSQL 12+** - [Download](https://www.postgresql.org/download/)
 - **Docker** (optional) - [Download](https://www.docker.com/get-started)
@@ -925,7 +934,7 @@ volumes:
 
 ---
 
-## 💻 Development
+## Development
 
 ### Project Structure
 
@@ -1022,7 +1031,7 @@ core-lending-collateral-management/
 ### Code Standards
 
 #### Java Conventions
-- **Java 21** features and syntax
+- **Java 25** features and syntax
 - **Reactive Programming** with Project Reactor (Mono/Flux)
 - **Immutability** where possible (use `@Builder`, `@Data`)
 - **Null Safety** - use `Optional` or reactive types
@@ -1068,7 +1077,7 @@ COMMENT ON COLUMN collateral_asset.risk_rating IS 'Risk rating of the collateral
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Running Tests
 
@@ -1095,11 +1104,11 @@ The project maintains **high test coverage** across all layers:
 
 | Layer | Coverage Target | Current |
 |-------|----------------|---------|
-| Controllers | 80%+ | ✅ |
-| Services | 90%+ | ✅ |
-| Repositories | 70%+ | ✅ |
-| Mappers | 100% | ✅ |
-| Overall | 85%+ | ✅ |
+| Controllers | 80%+ | |
+| Services | 90%+ | |
+| Repositories | 70%+ | |
+| Mappers | 100% | |
+| Overall | 85%+ | |
 
 ### Test Structure
 
@@ -1117,7 +1126,7 @@ src/test/java/
 
 ---
 
-## 🚢 Deployment
+## Deployment
 
 ### CI/CD Pipeline
 
@@ -1125,16 +1134,16 @@ The service uses **GitHub Actions** for automated CI/CD:
 
 ```yaml
 Workflow Steps:
-1. ✅ Checkout code
-2. ✅ Set up Java 21
-3. ✅ Cache Maven dependencies
-4. ✅ Run tests
-5. ✅ Build application
-6. ✅ Security scan (OWASP, Snyk)
-7. ✅ Build Docker image
-8. ✅ Push to container registry
-9. ✅ Deploy to environment
-10. ✅ Run smoke tests
+1. Checkout code
+2. Set up Java 25
+3. Cache Maven dependencies
+4. Run tests
+5. Build application
+6. Security scan (OWASP, Snyk)
+7. Build Docker image
+8. Push to container registry
+9. Deploy to environment
+10. Run smoke tests
 ```
 
 ### Environment Configuration
@@ -1259,7 +1268,7 @@ spec:
 
 ---
 
-## 📊 Monitoring & Observability
+## Monitoring & Observability
 
 The service includes comprehensive monitoring and observability features:
 
@@ -1359,7 +1368,7 @@ spring:
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions to the **Firefly OpenCore Banking Platform**!
 
@@ -1432,7 +1441,7 @@ test(services): add unit tests for guarantee service
 
 ### Pull Request Guidelines
 
-✅ **Required:**
+**Required:**
 - Clear description of changes
 - Tests for new features/fixes
 - Updated documentation
@@ -1440,7 +1449,7 @@ test(services): add unit tests for guarantee service
 - No merge conflicts
 - Code review approval
 
-❌ **Avoid:**
+**Avoid:**
 - Large PRs (>500 lines changed)
 - Mixing multiple features
 - Breaking changes without discussion
@@ -1498,7 +1507,7 @@ Any other context or screenshots.
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **Apache License 2.0**.
 
@@ -1522,7 +1531,7 @@ See the [LICENSE](LICENSE) file for the full license text.
 
 ---
 
-## 📞 Support
+## Support
 
 ### Documentation
 - **Website**: [getfirefly.io](https://getfirefly.io)
@@ -1543,9 +1552,9 @@ For enterprise support, training, and consulting:
 
 <div align="center">
 
-### 🌟 Star us on GitHub!
+### Star us on GitHub!
 
-If you find this project useful, please consider giving it a star ⭐
+If you find this project useful, please consider giving it a star 
 
 **Firefly OpenCore Banking Platform** - Building the future of open banking infrastructure.
 
@@ -1553,6 +1562,6 @@ If you find this project useful, please consider giving it a star ⭐
 
 ---
 
-Made with ❤️ by the Firefly team and [contributors](https://github.com/firefly-oss/core-lending-collateral-management/graphs/contributors)
+Made with by the Firefly team and [contributors](https://github.com/firefly-oss/core-lending-collateral-management/graphs/contributors)
 
 </div>
