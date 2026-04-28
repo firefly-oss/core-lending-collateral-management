@@ -1,0 +1,4571 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:18080
+  description: Generated server url
+tags:
+- name: SecuritiesCollateral
+  description: Operations for Securities Collateral Details
+- name: CollateralInsurance
+  description: Operations for Collateral Insurance Policies
+- name: CollateralLien
+  description: Operations for Collateral Liens
+- name: CollateralAsset
+  description: Operations for Collateral Assets
+- name: CollateralCase
+  description: Operations for Collateral Cases
+- name: GuaranteeDocument
+  description: Operations for Guarantee Documents
+- name: GuaranteeParty
+  description: Operations for Parties associated with a GuaranteeRecord
+- name: RealEstateProperty
+  description: Operations for Real Estate Property Details
+- name: GuaranteeRecord
+  description: Operations for Guarantee Records
+- name: CollateralDocument
+  description: Operations for Collateral Documents
+- name: VehicleCollateral
+  description: Operations for Vehicle Collateral Details
+- name: GuaranteeValuation
+  description: Operations for Guarantee Valuations
+- name: CollateralParty
+  description: Operations for Parties associated with a Collateral Asset
+- name: CollateralMonitoring
+  description: Operations for Collateral Monitoring
+- name: CollateralValuation
+  description: Operations for Collateral Valuations
+- name: GuaranteeClaim
+  description: Operations for Guarantee Claims
+paths:
+  /api/v1/guarantees/{guaranteeRecordId}:
+    get:
+      tags:
+      - GuaranteeRecord
+      summary: Get a GuaranteeRecord by ID
+      operationId: getById
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GuaranteeRecordDTO"
+    put:
+      tags:
+      - GuaranteeRecord
+      summary: Update a GuaranteeRecord
+      operationId: update
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GuaranteeRecordDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GuaranteeRecordDTO"
+    delete:
+      tags:
+      - GuaranteeRecord
+      summary: Delete a GuaranteeRecord
+      operationId: delete
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/guarantees/{guaranteeRecordId}/valuations/{guaranteeValuationId}:
+    get:
+      tags:
+      - GuaranteeValuation
+      summary: Get a Guarantee Valuation by ID
+      operationId: getById_1
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: guaranteeValuationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GuaranteeValuationDTO"
+    put:
+      tags:
+      - GuaranteeValuation
+      summary: Update a Guarantee Valuation
+      operationId: update_1
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: guaranteeValuationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GuaranteeValuationDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GuaranteeValuationDTO"
+    delete:
+      tags:
+      - GuaranteeValuation
+      summary: Delete a Guarantee Valuation
+      operationId: delete_1
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: guaranteeValuationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/guarantees/{guaranteeRecordId}/parties/{guaranteePartyId}:
+    get:
+      tags:
+      - GuaranteeParty
+      summary: Get a Guarantee Party by ID
+      operationId: getById_2
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: guaranteePartyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GuaranteePartyDTO"
+    put:
+      tags:
+      - GuaranteeParty
+      summary: Update a Guarantee Party
+      operationId: update_2
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: guaranteePartyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GuaranteePartyDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GuaranteePartyDTO"
+    delete:
+      tags:
+      - GuaranteeParty
+      summary: Delete a Guarantee Party record
+      operationId: delete_2
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: guaranteePartyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/guarantee-records/{guaranteeRecordId}/documents/{guaranteeDocumentId}:
+    get:
+      tags:
+      - GuaranteeDocument
+      summary: Get a Guarantee Document by ID
+      operationId: getById_3
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: guaranteeDocumentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GuaranteeDocumentDTO"
+    put:
+      tags:
+      - GuaranteeDocument
+      summary: Update a Guarantee Document
+      operationId: update_3
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: guaranteeDocumentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GuaranteeDocumentDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GuaranteeDocumentDTO"
+    delete:
+      tags:
+      - GuaranteeDocument
+      summary: Delete a Guarantee Document
+      operationId: delete_3
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: guaranteeDocumentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/guarantee-records/{guaranteeRecordId}/claims/{guaranteeClaimId}:
+    get:
+      tags:
+      - GuaranteeClaim
+      summary: Get a Guarantee Claim by ID
+      operationId: getById_4
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: guaranteeClaimId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GuaranteeClaimDTO"
+    put:
+      tags:
+      - GuaranteeClaim
+      summary: Update a Guarantee Claim
+      operationId: update_4
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: guaranteeClaimId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GuaranteeClaimDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GuaranteeClaimDTO"
+    delete:
+      tags:
+      - GuaranteeClaim
+      summary: Delete a Guarantee Claim
+      operationId: delete_4
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: guaranteeClaimId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/collateral-cases/{collateralCaseId}:
+    get:
+      tags:
+      - CollateralCase
+      summary: Get CollateralCase by ID
+      operationId: getById_5
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralCaseDTO"
+    put:
+      tags:
+      - CollateralCase
+      summary: Update CollateralCase
+      operationId: update_5
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollateralCaseDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralCaseDTO"
+    delete:
+      tags:
+      - CollateralCase
+      summary: Delete CollateralCase
+      operationId: delete_5
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/collateral-cases/{collateralCaseId}/documents/{collateralDocumentId}:
+    get:
+      tags:
+      - CollateralDocument
+      summary: Get a Collateral Document by ID
+      operationId: getById_6
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralDocumentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralDocumentDTO"
+    put:
+      tags:
+      - CollateralDocument
+      summary: Update a Collateral Document
+      operationId: update_6
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralDocumentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollateralDocumentDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralDocumentDTO"
+    delete:
+      tags:
+      - CollateralDocument
+      summary: Delete a Collateral Document
+      operationId: delete_6
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralDocumentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/collateral-cases/{collateralCaseId}/assets/{collateralAssetId}:
+    get:
+      tags:
+      - CollateralAsset
+      summary: Get a Collateral Asset by ID
+      operationId: getById_7
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralAssetDTO"
+    put:
+      tags:
+      - CollateralAsset
+      summary: Update a Collateral Asset
+      operationId: update_7
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollateralAssetDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralAssetDTO"
+    delete:
+      tags:
+      - CollateralAsset
+      summary: Delete a Collateral Asset
+      operationId: delete_7
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/collateral-cases/{collateralCaseId}/assets/{collateralAssetId}/valuations/{collateralValuationId}:
+    get:
+      tags:
+      - CollateralValuation
+      summary: Get a Collateral Valuation by ID
+      operationId: getById_8
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralValuationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralValuationDTO"
+    put:
+      tags:
+      - CollateralValuation
+      summary: Update a Collateral Valuation
+      operationId: update_8
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralValuationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollateralValuationDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralValuationDTO"
+    delete:
+      tags:
+      - CollateralValuation
+      summary: Delete a Collateral Valuation
+      operationId: delete_8
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralValuationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/collateral-cases/{collateralCaseId}/assets/{collateralAssetId}/parties/{collateralPartyId}:
+    get:
+      tags:
+      - CollateralParty
+      summary: Get a Collateral Party by ID
+      operationId: getById_9
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralPartyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralPartyDTO"
+    put:
+      tags:
+      - CollateralParty
+      summary: Update a Collateral Party
+      operationId: update_9
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralPartyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollateralPartyDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralPartyDTO"
+    delete:
+      tags:
+      - CollateralParty
+      summary: Delete a Collateral Party record
+      operationId: delete_9
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralPartyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/collateral-cases/{collateralCaseId}/assets/{collateralAssetId}/liens/{collateralLienId}:
+    get:
+      tags:
+      - CollateralLien
+      summary: Get a Collateral Lien by ID
+      operationId: getById_10
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralLienId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralLienDTO"
+    put:
+      tags:
+      - CollateralLien
+      summary: Update a Collateral Lien
+      operationId: update_10
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralLienId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollateralLienDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralLienDTO"
+    delete:
+      tags:
+      - CollateralLien
+      summary: Delete a Collateral Lien
+      operationId: delete_10
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralLienId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/collateral-assets/{collateralAssetId}/vehicle-details/{vehicleCollateralId}:
+    get:
+      tags:
+      - VehicleCollateral
+      summary: Get Vehicle Collateral Details by ID
+      operationId: getById_11
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: vehicleCollateralId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/VehicleCollateralDTO"
+    put:
+      tags:
+      - VehicleCollateral
+      summary: Update Vehicle Collateral Details
+      operationId: update_11
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: vehicleCollateralId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VehicleCollateralDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/VehicleCollateralDTO"
+    delete:
+      tags:
+      - VehicleCollateral
+      summary: Delete Vehicle Collateral Details
+      operationId: delete_11
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: vehicleCollateralId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/collateral-assets/{collateralAssetId}/securities-details/{securitiesCollateralId}:
+    get:
+      tags:
+      - SecuritiesCollateral
+      summary: Get Securities Collateral Details by ID
+      operationId: getById_12
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: securitiesCollateralId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/SecuritiesCollateralDTO"
+    put:
+      tags:
+      - SecuritiesCollateral
+      summary: Update Securities Collateral Details
+      operationId: update_12
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: securitiesCollateralId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SecuritiesCollateralDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/SecuritiesCollateralDTO"
+    delete:
+      tags:
+      - SecuritiesCollateral
+      summary: Delete Securities Collateral Details
+      operationId: delete_12
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: securitiesCollateralId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/collateral-assets/{collateralAssetId}/property-details/{propertyId}:
+    get:
+      tags:
+      - RealEstateProperty
+      summary: Get Real Estate Property Details by ID
+      operationId: getById_13
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RealEstatePropertyDTO"
+    put:
+      tags:
+      - RealEstateProperty
+      summary: Update Real Estate Property Details
+      operationId: update_13
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RealEstatePropertyDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RealEstatePropertyDTO"
+    delete:
+      tags:
+      - RealEstateProperty
+      summary: Delete Real Estate Property Details
+      operationId: delete_13
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/collateral-assets/{collateralAssetId}/monitoring/{collateralMonitoringId}:
+    get:
+      tags:
+      - CollateralMonitoring
+      summary: Get a Collateral Monitoring Record by ID
+      operationId: getById_14
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralMonitoringId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralMonitoringDTO"
+    put:
+      tags:
+      - CollateralMonitoring
+      summary: Update a Collateral Monitoring Record
+      operationId: update_14
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralMonitoringId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollateralMonitoringDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralMonitoringDTO"
+    delete:
+      tags:
+      - CollateralMonitoring
+      summary: Delete a Collateral Monitoring Record
+      operationId: delete_14
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralMonitoringId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/collateral-assets/{collateralAssetId}/insurance/{insuranceId}:
+    get:
+      tags:
+      - CollateralInsurance
+      summary: Get a Collateral Insurance Policy by ID
+      operationId: getById_15
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: insuranceId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralInsuranceDTO"
+    put:
+      tags:
+      - CollateralInsurance
+      summary: Update a Collateral Insurance Policy
+      operationId: update_15
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: insuranceId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollateralInsuranceDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralInsuranceDTO"
+    delete:
+      tags:
+      - CollateralInsurance
+      summary: Delete a Collateral Insurance Policy
+      operationId: delete_15
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: insuranceId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/guarantees:
+    get:
+      tags:
+      - GuaranteeRecord
+      summary: List or Search Guarantee Records
+      operationId: findAll
+      parameters:
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestGuaranteeRecordDTO"
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponseGuaranteeRecordDTO"
+    post:
+      tags:
+      - GuaranteeRecord
+      summary: Create a GuaranteeRecord
+      operationId: create
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GuaranteeRecordDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GuaranteeRecordDTO"
+  /api/v1/guarantees/{guaranteeRecordId}/valuations:
+    get:
+      tags:
+      - GuaranteeValuation
+      summary: List or Search Guarantee Valuations
+      operationId: findAll_1
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestGuaranteeValuationDTO"
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponseGuaranteeValuationDTO"
+    post:
+      tags:
+      - GuaranteeValuation
+      summary: Create a Guarantee Valuation
+      operationId: create_1
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GuaranteeValuationDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GuaranteeValuationDTO"
+  /api/v1/guarantees/{guaranteeRecordId}/parties:
+    get:
+      tags:
+      - GuaranteeParty
+      summary: List or Search Guarantee Parties
+      operationId: findAll_2
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestGuaranteePartyDTO"
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponseGuaranteePartyDTO"
+    post:
+      tags:
+      - GuaranteeParty
+      summary: Create a Guarantee Party record
+      operationId: create_2
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GuaranteePartyDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GuaranteePartyDTO"
+  /api/v1/guarantee-records/{guaranteeRecordId}/documents:
+    get:
+      tags:
+      - GuaranteeDocument
+      summary: List or Search Guarantee Documents for a Guarantee Record
+      operationId: findAll_3
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestGuaranteeDocumentDTO"
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponseGuaranteeDocumentDTO"
+    post:
+      tags:
+      - GuaranteeDocument
+      summary: Create a Guarantee Document under the given Guarantee Record
+      operationId: create_3
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GuaranteeDocumentDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GuaranteeDocumentDTO"
+  /api/v1/guarantee-records/{guaranteeRecordId}/claims:
+    get:
+      tags:
+      - GuaranteeClaim
+      summary: List or Search Guarantee Claims for a Guarantee Record
+      operationId: findAll_4
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestGuaranteeClaimDTO"
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponseGuaranteeClaimDTO"
+    post:
+      tags:
+      - GuaranteeClaim
+      summary: Create a Guarantee Claim under the given Guarantee Record
+      operationId: create_4
+      parameters:
+      - name: guaranteeRecordId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GuaranteeClaimDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GuaranteeClaimDTO"
+  /api/v1/collateral-cases:
+    get:
+      tags:
+      - CollateralCase
+      summary: Find All (or Search) Collateral Cases
+      operationId: findAll_5
+      parameters:
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestCollateralCaseDTO"
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponseCollateralCaseDTO"
+    post:
+      tags:
+      - CollateralCase
+      summary: Create CollateralCase
+      operationId: create_5
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollateralCaseDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralCaseDTO"
+  /api/v1/collateral-cases/{collateralCaseId}/documents:
+    get:
+      tags:
+      - CollateralDocument
+      summary: List or Search Collateral Documents for a Case
+      operationId: findAll_6
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestCollateralDocumentDTO"
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponseCollateralDocumentDTO"
+    post:
+      tags:
+      - CollateralDocument
+      summary: Create a Collateral Document under the given Case
+      operationId: create_6
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollateralDocumentDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralDocumentDTO"
+  /api/v1/collateral-cases/{collateralCaseId}/assets:
+    get:
+      tags:
+      - CollateralAsset
+      summary: List or Search Collateral Assets for a Case
+      operationId: findAll_7
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestCollateralAssetDTO"
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponseCollateralAssetDTO"
+    post:
+      tags:
+      - CollateralAsset
+      summary: Create a Collateral Asset under the given Case
+      operationId: create_7
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollateralAssetDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralAssetDTO"
+  /api/v1/collateral-cases/{collateralCaseId}/assets/{collateralAssetId}/valuations:
+    get:
+      tags:
+      - CollateralValuation
+      summary: List or Search Valuations for an Asset
+      operationId: findAll_8
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestCollateralValuationDTO"
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponseCollateralValuationDTO"
+    post:
+      tags:
+      - CollateralValuation
+      summary: Create a Valuation under an Asset
+      operationId: create_8
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollateralValuationDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralValuationDTO"
+  /api/v1/collateral-cases/{collateralCaseId}/assets/{collateralAssetId}/parties:
+    get:
+      tags:
+      - CollateralParty
+      summary: List or Search Collateral Parties
+      operationId: findAll_9
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestCollateralPartyDTO"
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponseCollateralPartyDTO"
+    post:
+      tags:
+      - CollateralParty
+      summary: Create a Collateral Party record
+      operationId: create_9
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollateralPartyDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralPartyDTO"
+  /api/v1/collateral-cases/{collateralCaseId}/assets/{collateralAssetId}/liens:
+    get:
+      tags:
+      - CollateralLien
+      summary: List or Search Collateral Liens
+      operationId: findAll_10
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestCollateralLienDTO"
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponseCollateralLienDTO"
+    post:
+      tags:
+      - CollateralLien
+      summary: Create a Collateral Lien
+      operationId: create_10
+      parameters:
+      - name: collateralCaseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollateralLienDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralLienDTO"
+  /api/v1/collateral-assets/{collateralAssetId}/vehicle-details:
+    get:
+      tags:
+      - VehicleCollateral
+      summary: List or Search Vehicle Collateral Details for an Asset
+      operationId: findAll_11
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestVehicleCollateralDTO"
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponseVehicleCollateralDTO"
+    post:
+      tags:
+      - VehicleCollateral
+      summary: Create Vehicle Collateral Details under the given Asset
+      operationId: create_11
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VehicleCollateralDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/VehicleCollateralDTO"
+  /api/v1/collateral-assets/{collateralAssetId}/securities-details:
+    get:
+      tags:
+      - SecuritiesCollateral
+      summary: List or Search Securities Collateral Details for an Asset
+      operationId: findAll_12
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestSecuritiesCollateralDTO"
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponseSecuritiesCollateralDTO"
+    post:
+      tags:
+      - SecuritiesCollateral
+      summary: Create Securities Collateral Details under the given Asset
+      operationId: create_12
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SecuritiesCollateralDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/SecuritiesCollateralDTO"
+  /api/v1/collateral-assets/{collateralAssetId}/property-details:
+    get:
+      tags:
+      - RealEstateProperty
+      summary: List or Search Real Estate Property Details for an Asset
+      operationId: findAll_13
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestRealEstatePropertyDTO"
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponseRealEstatePropertyDTO"
+    post:
+      tags:
+      - RealEstateProperty
+      summary: Create Real Estate Property Details under the given Asset
+      operationId: create_13
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RealEstatePropertyDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RealEstatePropertyDTO"
+  /api/v1/collateral-assets/{collateralAssetId}/monitoring:
+    get:
+      tags:
+      - CollateralMonitoring
+      summary: List or Search Collateral Monitoring Records for an Asset
+      operationId: findAll_14
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestCollateralMonitoringDTO"
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponseCollateralMonitoringDTO"
+    post:
+      tags:
+      - CollateralMonitoring
+      summary: Create a Collateral Monitoring Record under the given Asset
+      operationId: create_14
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollateralMonitoringDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralMonitoringDTO"
+  /api/v1/collateral-assets/{collateralAssetId}/insurance:
+    get:
+      tags:
+      - CollateralInsurance
+      summary: List or Search Collateral Insurance Policies for an Asset
+      operationId: findAll_15
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestCollateralInsuranceDTO"
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponseCollateralInsuranceDTO"
+    post:
+      tags:
+      - CollateralInsurance
+      summary: Create a Collateral Insurance Policy under the given Asset
+      operationId: create_15
+      parameters:
+      - name: collateralAssetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollateralInsuranceDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CollateralInsuranceDTO"
+components:
+  schemas:
+    GuaranteeRecordDTO:
+      required:
+      - guaranteeAmount
+      - guaranteeStatus
+      - guaranteeType
+      - loanApplicationId
+      - startDate
+      - termsConditions
+      type: object
+      properties:
+        guaranteeRecordId:
+          type: string
+          format: uuid
+          readOnly: true
+        loanApplicationId:
+          type: string
+          format: uuid
+        loanServicingCaseId:
+          type: string
+          format: uuid
+        guaranteeType:
+          type: string
+          enum:
+          - PERSONAL
+          - CORPORATE
+          - STANDBY_LETTER
+          - BANK_GUARANTEE
+        guaranteeAmount:
+          minimum: 0.0
+          exclusiveMinimum: true
+          type: number
+        guaranteeStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - EXPIRED
+          - TERMINATED
+          - PENDING
+        termsConditions:
+          maxLength: 2000
+          minLength: 1
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    GuaranteeValuationDTO:
+      required:
+      - assessedRiskAmount
+      - guaranteeRecordId
+      - rationale
+      - riskGrade
+      type: object
+      properties:
+        guaranteeValuationId:
+          type: string
+          format: uuid
+          readOnly: true
+        guaranteeRecordId:
+          type: string
+          format: uuid
+        assessedRiskAmount:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        riskGrade:
+          type: string
+          enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+        rationale:
+          maxLength: 2000
+          minLength: 1
+          type: string
+        valuationDate:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    GuaranteePartyDTO:
+      required:
+      - guaranteeRecordId
+      - guaranteeRole
+      - partyId
+      type: object
+      properties:
+        guaranteePartyId:
+          type: string
+          format: uuid
+          readOnly: true
+        guaranteeRecordId:
+          type: string
+          format: uuid
+        partyId:
+          type: string
+          format: uuid
+        guaranteeRole:
+          type: string
+          enum:
+          - GUARANTOR
+          - BENEFICIARY
+          - AGENT
+        additionalDetails:
+          maxLength: 1000
+          minLength: 0
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    GuaranteeDocumentDTO:
+      required:
+      - documentId
+      - documentName
+      - documentType
+      - guaranteeRecordId
+      type: object
+      properties:
+        guaranteeDocumentId:
+          type: string
+          format: uuid
+          readOnly: true
+        guaranteeRecordId:
+          type: string
+          format: uuid
+        documentId:
+          type: string
+          format: uuid
+        documentType:
+          type: string
+          enum:
+          - TITLE_DEED
+          - PROPERTY_DEED
+          - VEHICLE_TITLE
+          - VEHICLE_REGISTRATION
+          - APPRAISAL_REPORT
+          - VALUATION_REPORT
+          - INSURANCE_POLICY
+          - INSURANCE_CERTIFICATE
+          - LIEN_REGISTRATION
+          - LIEN_RELEASE
+          - MORTGAGE_DEED
+          - PLEDGE_AGREEMENT
+          - GUARANTEE_AGREEMENT
+          - PERSONAL_GUARANTEE
+          - CORPORATE_GUARANTEE
+          - BANK_GUARANTEE_LETTER
+          - STANDBY_LETTER_OF_CREDIT
+          - GUARANTOR_FINANCIAL_STATEMENT
+          - GUARANTOR_CREDIT_REPORT
+          - POWER_OF_ATTORNEY
+          - COURT_ORDER
+          - LEGAL_OPINION
+          - SUBORDINATION_AGREEMENT
+          - INTERCREDITOR_AGREEMENT
+          - INSPECTION_REPORT
+          - ENVIRONMENTAL_REPORT
+          - SURVEY_REPORT
+          - ZONING_CERTIFICATE
+          - BUILDING_PERMIT
+          - OCCUPANCY_CERTIFICATE
+          - TAX_ASSESSMENT
+          - UTILITY_BILL
+          - PHOTO
+          - VIDEO
+          - CORRESPONDENCE
+          - AMENDMENT
+          - WAIVER
+          - OTHER
+        documentName:
+          maxLength: 255
+          minLength: 1
+          type: string
+        documentDate:
+          type: string
+          format: date
+        expiryDate:
+          type: string
+          format: date
+        issuer:
+          maxLength: 255
+          minLength: 0
+          type: string
+        description:
+          maxLength: 2000
+          minLength: 0
+          type: string
+        isVerified:
+          type: boolean
+        verifiedBy:
+          type: string
+          format: uuid
+        verifiedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    GuaranteeClaimDTO:
+      required:
+      - claimDate
+      - claimReason
+      - claimStatus
+      - claimedAmount
+      - guaranteeRecordId
+      type: object
+      properties:
+        guaranteeClaimId:
+          type: string
+          format: uuid
+          readOnly: true
+        guaranteeRecordId:
+          type: string
+          format: uuid
+        claimReference:
+          maxLength: 100
+          minLength: 0
+          type: string
+        claimDate:
+          type: string
+          format: date
+        claimedAmount:
+          minimum: 0.0
+          exclusiveMinimum: true
+          type: number
+        approvedAmount:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        paidAmount:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        claimStatus:
+          type: string
+          enum:
+          - INITIATED
+          - UNDER_REVIEW
+          - APPROVED
+          - REJECTED
+          - PAID
+          - PARTIALLY_PAID
+          - CANCELLED
+        claimReason:
+          maxLength: 2000
+          minLength: 1
+          type: string
+        supportingDocumentation:
+          maxLength: 5000
+          minLength: 0
+          type: string
+        reviewedBy:
+          type: string
+          format: uuid
+        reviewedAt:
+          type: string
+          format: date-time
+        reviewNotes:
+          maxLength: 2000
+          minLength: 0
+          type: string
+        paymentDate:
+          type: string
+          format: date
+        paymentReference:
+          maxLength: 100
+          minLength: 0
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CollateralCaseDTO:
+      required:
+      - collateralStatus
+      - loanApplicationId
+      type: object
+      properties:
+        collateralCaseId:
+          type: string
+          format: uuid
+          readOnly: true
+        loanApplicationId:
+          type: string
+          format: uuid
+        loanServicingCaseId:
+          type: string
+          format: uuid
+        referenceNumber:
+          maxLength: 50
+          minLength: 0
+          type: string
+        collateralStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - RELEASED
+          - UNDER_REVIEW
+          - PENDING
+        remarks:
+          maxLength: 1000
+          minLength: 0
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CollateralDocumentDTO:
+      required:
+      - documentId
+      - documentName
+      - documentType
+      type: object
+      properties:
+        collateralDocumentId:
+          type: string
+          format: uuid
+          readOnly: true
+        collateralCaseId:
+          type: string
+          format: uuid
+        collateralAssetId:
+          type: string
+          format: uuid
+        documentId:
+          type: string
+          format: uuid
+        documentType:
+          type: string
+          enum:
+          - TITLE_DEED
+          - PROPERTY_DEED
+          - VEHICLE_TITLE
+          - VEHICLE_REGISTRATION
+          - APPRAISAL_REPORT
+          - VALUATION_REPORT
+          - INSURANCE_POLICY
+          - INSURANCE_CERTIFICATE
+          - LIEN_REGISTRATION
+          - LIEN_RELEASE
+          - MORTGAGE_DEED
+          - PLEDGE_AGREEMENT
+          - GUARANTEE_AGREEMENT
+          - PERSONAL_GUARANTEE
+          - CORPORATE_GUARANTEE
+          - BANK_GUARANTEE_LETTER
+          - STANDBY_LETTER_OF_CREDIT
+          - GUARANTOR_FINANCIAL_STATEMENT
+          - GUARANTOR_CREDIT_REPORT
+          - POWER_OF_ATTORNEY
+          - COURT_ORDER
+          - LEGAL_OPINION
+          - SUBORDINATION_AGREEMENT
+          - INTERCREDITOR_AGREEMENT
+          - INSPECTION_REPORT
+          - ENVIRONMENTAL_REPORT
+          - SURVEY_REPORT
+          - ZONING_CERTIFICATE
+          - BUILDING_PERMIT
+          - OCCUPANCY_CERTIFICATE
+          - TAX_ASSESSMENT
+          - UTILITY_BILL
+          - PHOTO
+          - VIDEO
+          - CORRESPONDENCE
+          - AMENDMENT
+          - WAIVER
+          - OTHER
+        documentName:
+          maxLength: 255
+          minLength: 1
+          type: string
+        documentDate:
+          type: string
+          format: date
+        expiryDate:
+          type: string
+          format: date
+        issuer:
+          maxLength: 255
+          minLength: 0
+          type: string
+        description:
+          maxLength: 2000
+          minLength: 0
+          type: string
+        isVerified:
+          type: boolean
+        verifiedBy:
+          type: string
+          format: uuid
+        verifiedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CollateralAssetDTO:
+      required:
+      - assetDescription
+      - assetType
+      - collateralCaseId
+      - isPrimary
+      type: object
+      properties:
+        collateralAssetId:
+          type: string
+          format: uuid
+          readOnly: true
+        collateralCaseId:
+          type: string
+          format: uuid
+        assetType:
+          type: string
+          enum:
+          - REAL_ESTATE
+          - VEHICLE
+          - SECURITIES
+          - EQUIPMENT
+          - INVENTORY
+          - ACCOUNTS_RECEIVABLE
+          - CASH_DEPOSIT
+          - PRECIOUS_METALS
+          - INTELLECTUAL_PROPERTY
+          - OTHER
+        assetDescription:
+          maxLength: 500
+          minLength: 1
+          type: string
+        assetIdentifier:
+          maxLength: 255
+          minLength: 0
+          type: string
+        declaredValue:
+          minimum: 0.0
+          exclusiveMinimum: true
+          type: number
+        isPrimary:
+          type: boolean
+        ownershipInfo:
+          maxLength: 1000
+          minLength: 0
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CollateralValuationDTO:
+      required:
+      - appraisedValue
+      - collateralAssetId
+      - currencyCode
+      - valuationDate
+      - valuationMethod
+      - valuationProvider
+      type: object
+      properties:
+        collateralValuationId:
+          type: string
+          format: uuid
+          readOnly: true
+        collateralAssetId:
+          type: string
+          format: uuid
+        appraisedValue:
+          minimum: 0.0
+          exclusiveMinimum: true
+          type: number
+        valuationMethod:
+          type: string
+          enum:
+          - MARKET_COMPARISON
+          - INCOME_APPROACH
+          - COST_APPROACH
+          - OTHER
+        valuationProvider:
+          maxLength: 200
+          minLength: 1
+          type: string
+        appraiserName:
+          maxLength: 255
+          minLength: 0
+          type: string
+        appraiserLicense:
+          maxLength: 100
+          minLength: 0
+          type: string
+        valuationDate:
+          type: string
+          format: date
+        expiryDate:
+          type: string
+          format: date
+        currencyCode:
+          type: string
+          enum:
+          - EUR
+          - USD
+          - GBP
+        marketValue:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        rentalValue:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        replacementCost:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        landValue:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        buildingValue:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        salvageValue:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        comparableAssets:
+          type: string
+        methodology:
+          maxLength: 2000
+          minLength: 0
+          type: string
+        assumptions:
+          maxLength: 2000
+          minLength: 0
+          type: string
+        limitations:
+          maxLength: 2000
+          minLength: 0
+          type: string
+        requiresRepairs:
+          type: boolean
+        requiredRepairs:
+          maxLength: 2000
+          minLength: 0
+          type: string
+        repairCost:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        notes:
+          maxLength: 1000
+          minLength: 0
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CollateralPartyDTO:
+      required:
+      - collateralAssetId
+      - partyId
+      - roleCode
+      type: object
+      properties:
+        collateralPartyId:
+          type: string
+          format: uuid
+          readOnly: true
+        collateralAssetId:
+          type: string
+          format: uuid
+        partyId:
+          type: string
+          format: uuid
+        roleCode:
+          type: string
+          enum:
+          - OWNER
+          - CO_OWNER
+          - OCCUPANT
+          - CUSTODIAN
+        ownershipPercentage:
+          maximum: 100.0
+          exclusiveMaximum: false
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CollateralLienDTO:
+      required:
+      - collateralAssetId
+      - isReleased
+      - lienDate
+      - lienType
+      - registrationDetails
+      type: object
+      properties:
+        collateralLienId:
+          type: string
+          format: uuid
+          readOnly: true
+        collateralAssetId:
+          type: string
+          format: uuid
+        lienType:
+          type: string
+          enum:
+          - MORTGAGE
+          - PLEDGE
+          - HYPOTHEC
+          - OTHER
+        registrationDetails:
+          maxLength: 1000
+          minLength: 1
+          type: string
+        isReleased:
+          type: boolean
+        lienDate:
+          type: string
+          format: date
+        releaseDate:
+          type: string
+          format: date
+        remarks:
+          maxLength: 1000
+          minLength: 0
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    VehicleCollateralDTO:
+      required:
+      - collateralAssetId
+      - vehicleType
+      type: object
+      properties:
+        vehicleCollateralId:
+          type: string
+          format: uuid
+          readOnly: true
+        collateralAssetId:
+          type: string
+          format: uuid
+        vehicleType:
+          type: string
+          enum:
+          - CAR
+          - TRUCK
+          - MOTORCYCLE
+          - BOAT
+          - AIRCRAFT
+          - RV
+          - COMMERCIAL_VEHICLE
+          - AGRICULTURAL_VEHICLE
+          - CONSTRUCTION_VEHICLE
+          - OTHER
+        vin:
+          maxLength: 17
+          minLength: 0
+          type: string
+        make:
+          maxLength: 100
+          minLength: 0
+          type: string
+        model:
+          maxLength: 100
+          minLength: 0
+          type: string
+        year:
+          maximum: 2100
+          minimum: 1900
+          type: integer
+          format: int32
+        color:
+          maxLength: 50
+          minLength: 0
+          type: string
+        engineNumber:
+          maxLength: 100
+          minLength: 0
+          type: string
+        chassisNumber:
+          maxLength: 100
+          minLength: 0
+          type: string
+        registrationNumber:
+          maxLength: 50
+          minLength: 0
+          type: string
+        registrationDate:
+          type: string
+          format: date
+        registrationExpiryDate:
+          type: string
+          format: date
+        mileage:
+          minimum: 0
+          type: integer
+          format: int32
+        fuelType:
+          maxLength: 50
+          minLength: 0
+          type: string
+        transmissionType:
+          maxLength: 50
+          minLength: 0
+          type: string
+        engineCapacity:
+          minimum: 0
+          type: integer
+          format: int32
+        seatingCapacity:
+          minimum: 1
+          type: integer
+          format: int32
+        condition:
+          maxLength: 50
+          minLength: 0
+          type: string
+        purchasePrice:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        purchaseDate:
+          type: string
+          format: date
+        dealerName:
+          maxLength: 255
+          minLength: 0
+          type: string
+        isFinanced:
+          type: boolean
+        existingLoanAmount:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        existingLender:
+          maxLength: 255
+          minLength: 0
+          type: string
+        modifications:
+          maxLength: 5000
+          minLength: 0
+          type: string
+        accidentHistory:
+          maxLength: 5000
+          minLength: 0
+          type: string
+        serviceHistory:
+          maxLength: 5000
+          minLength: 0
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    SecuritiesCollateralDTO:
+      required:
+      - collateralAssetId
+      - securityType
+      type: object
+      properties:
+        securitiesCollateralId:
+          type: string
+          format: uuid
+          readOnly: true
+        collateralAssetId:
+          type: string
+          format: uuid
+        securityType:
+          type: string
+          enum:
+          - STOCK
+          - BOND
+          - MUTUAL_FUND
+          - ETF
+          - CERTIFICATE_OF_DEPOSIT
+          - TREASURY
+          - MONEY_MARKET
+          - OTHER
+        isin:
+          maxLength: 12
+          minLength: 0
+          type: string
+        cusip:
+          maxLength: 9
+          minLength: 0
+          type: string
+        tickerSymbol:
+          maxLength: 10
+          minLength: 0
+          type: string
+        securityName:
+          maxLength: 255
+          minLength: 0
+          type: string
+        issuerName:
+          maxLength: 255
+          minLength: 0
+          type: string
+        issuerCountry:
+          maxLength: 3
+          minLength: 0
+          type: string
+        quantity:
+          minimum: 0.0
+          exclusiveMinimum: true
+          type: number
+        faceValue:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        purchasePrice:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        purchaseDate:
+          type: string
+          format: date
+        currentMarketPrice:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        priceDate:
+          type: string
+          format: date
+        currency:
+          maxLength: 3
+          minLength: 0
+          type: string
+        maturityDate:
+          type: string
+          format: date
+        couponRate:
+          maximum: 100.0
+          exclusiveMaximum: false
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        dividendYield:
+          maximum: 100.0
+          exclusiveMaximum: false
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        creditRating:
+          maxLength: 10
+          minLength: 0
+          type: string
+        exchange:
+          maxLength: 100
+          minLength: 0
+          type: string
+        custodianName:
+          maxLength: 255
+          minLength: 0
+          type: string
+        custodianAccount:
+          maxLength: 100
+          minLength: 0
+          type: string
+        isPledged:
+          type: boolean
+        pledgeDate:
+          type: string
+          format: date
+        pledgeReference:
+          maxLength: 100
+          minLength: 0
+          type: string
+        haircutPercentage:
+          maximum: 100.0
+          exclusiveMaximum: false
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        marginCallThreshold:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        restrictions:
+          maxLength: 5000
+          minLength: 0
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    RealEstatePropertyDTO:
+      required:
+      - addressLine1
+      - city
+      - collateralAssetId
+      - countryCode
+      - propertyType
+      type: object
+      properties:
+        propertyId:
+          type: string
+          format: uuid
+          readOnly: true
+        collateralAssetId:
+          type: string
+          format: uuid
+        propertyType:
+          type: string
+          enum:
+          - RESIDENTIAL
+          - COMMERCIAL
+          - LAND
+          - INDUSTRIAL
+          - MIXED_USE
+          - AGRICULTURAL
+        propertyUse:
+          type: string
+          enum:
+          - PRIMARY_RESIDENCE
+          - SECONDARY_RESIDENCE
+          - INVESTMENT
+          - COMMERCIAL_USE
+        propertyCondition:
+          type: string
+          enum:
+          - EXCELLENT
+          - GOOD
+          - FAIR
+          - POOR
+          - UNDER_CONSTRUCTION
+        addressLine1:
+          maxLength: 255
+          minLength: 1
+          type: string
+        addressLine2:
+          maxLength: 255
+          minLength: 0
+          type: string
+        city:
+          maxLength: 100
+          minLength: 1
+          type: string
+        state:
+          maxLength: 100
+          minLength: 0
+          type: string
+        postalCode:
+          maxLength: 20
+          minLength: 0
+          type: string
+        countryCode:
+          maxLength: 3
+          minLength: 2
+          type: string
+        landArea:
+          minimum: 0.0
+          exclusiveMinimum: true
+          type: number
+        landAreaUnit:
+          maxLength: 20
+          minLength: 0
+          type: string
+        builtArea:
+          minimum: 0.0
+          exclusiveMinimum: true
+          type: number
+        builtAreaUnit:
+          maxLength: 20
+          minLength: 0
+          type: string
+        constructionYear:
+          type: integer
+          format: int32
+        renovationYear:
+          type: integer
+          format: int32
+        titleNumber:
+          maxLength: 100
+          minLength: 0
+          type: string
+        cadastralReference:
+          maxLength: 100
+          minLength: 0
+          type: string
+        legalDescription:
+          maxLength: 2000
+          minLength: 0
+          type: string
+        zoningClassification:
+          maxLength: 100
+          minLength: 0
+          type: string
+        totalRooms:
+          type: integer
+          format: int32
+        totalBedrooms:
+          type: integer
+          format: int32
+        totalBathrooms:
+          type: integer
+          format: int32
+        hasParking:
+          type: boolean
+        parkingSpaces:
+          type: integer
+          format: int32
+        hasStorage:
+          type: boolean
+        storageArea:
+          type: number
+        hasElevator:
+          type: boolean
+        floorNumber:
+          type: integer
+          format: int32
+        totalFloors:
+          type: integer
+          format: int32
+        energyRating:
+          maxLength: 10
+          minLength: 0
+          type: string
+        heatingType:
+          maxLength: 50
+          minLength: 0
+          type: string
+        coolingType:
+          maxLength: 50
+          minLength: 0
+          type: string
+        restrictions:
+          maxLength: 2000
+          minLength: 0
+          type: string
+        amenities:
+          type: string
+        nearbyFacilities:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CollateralMonitoringDTO:
+      required:
+      - collateralAssetId
+      - monitoringDate
+      type: object
+      properties:
+        collateralMonitoringId:
+          type: string
+          format: uuid
+          readOnly: true
+        collateralAssetId:
+          type: string
+          format: uuid
+        monitoringDate:
+          type: string
+          format: date
+        nextMonitoringDate:
+          type: string
+          format: date
+        monitoringFrequency:
+          type: string
+          enum:
+          - MONTHLY
+          - QUARTERLY
+          - SEMI_ANNUALLY
+          - ANNUALLY
+          - AD_HOC
+          - ON_EVENT
+        currentValue:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        previousValue:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        valueChangePercentage:
+          type: number
+        conditionAssessment:
+          maxLength: 2000
+          minLength: 0
+          type: string
+        insuranceStatus:
+          maxLength: 50
+          minLength: 0
+          type: string
+        insuranceExpiryDate:
+          type: string
+          format: date
+        complianceStatus:
+          maxLength: 50
+          minLength: 0
+          type: string
+        issuesIdentified:
+          maxLength: 5000
+          minLength: 0
+          type: string
+        actionRequired:
+          maxLength: 2000
+          minLength: 0
+          type: string
+        actionTaken:
+          maxLength: 2000
+          minLength: 0
+          type: string
+        monitoredBy:
+          type: string
+          format: uuid
+        notes:
+          maxLength: 2000
+          minLength: 0
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CollateralInsuranceDTO:
+      required:
+      - collateralAssetId
+      - coverageAmount
+      - endDate
+      - insuranceType
+      - isActive
+      - policyNumber
+      - providerName
+      - startDate
+      type: object
+      properties:
+        insuranceId:
+          type: string
+          format: uuid
+          readOnly: true
+        collateralAssetId:
+          type: string
+          format: uuid
+        insuranceType:
+          type: string
+          enum:
+          - HOMEOWNERS
+          - FIRE
+          - FLOOD
+          - EARTHQUAKE
+          - LIFE
+          - MORTGAGE_GUARANTEE
+          - VEHICLE
+          - EQUIPMENT
+          - LIABILITY
+          - OTHER
+        policyNumber:
+          maxLength: 100
+          minLength: 1
+          type: string
+        providerName:
+          maxLength: 255
+          minLength: 1
+          type: string
+        providerCode:
+          maxLength: 50
+          minLength: 0
+          type: string
+        providerContact:
+          maxLength: 255
+          minLength: 0
+          type: string
+        coverageAmount:
+          minimum: 0.0
+          exclusiveMinimum: true
+          type: number
+        deductibleAmount:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        annualPremium:
+          minimum: 0.0
+          exclusiveMinimum: true
+          type: number
+        premiumFrequency:
+          maxLength: 20
+          minLength: 0
+          type: string
+        premiumAmount:
+          minimum: 0.0
+          exclusiveMinimum: true
+          type: number
+        bankBeneficiary:
+          type: boolean
+        beneficiaryName:
+          maxLength: 255
+          minLength: 0
+          type: string
+        isActive:
+          type: boolean
+        lastPaymentDate:
+          type: string
+          format: date
+        nextPaymentDate:
+          type: string
+          format: date
+        coverageDetails:
+          type: string
+        exclusions:
+          type: string
+        remarks:
+          maxLength: 2000
+          minLength: 0
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    FilterOptions:
+      type: object
+      properties:
+        caseInsensitiveStrings:
+          type: boolean
+        includeInheritedFields:
+          type: boolean
+      description: Filter options for customizing filter behavior
+    FilterRequestGuaranteeRecordDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/GuaranteeRecordDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+      description: Generic filter request that includes both filter criteria and pagination
+    PaginationRequest:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The zero-based page number to retrieve.
+          format: int32
+          example: 0
+          default: 0
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          format: int32
+          example: 10
+          default: 10
+        sortBy:
+          type: string
+          description: The field to sort the results by.
+          example: name
+        sortDirection:
+          type: string
+          description: "The direction of sorting, either ASC or DESC."
+          example: DESC
+          default: DESC
+      description: "Represents a pagination request for retrieving paginated results,\
+        \ including page number, size, sort field, and direction."
+    RangeFilter:
+      type: object
+      properties:
+        ranges:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/RangeObject"
+          description: Map of field names to their range criteria
+      description: Represents range filters for numeric fields
+    RangeObject:
+      type: object
+      properties:
+        from:
+          type: object
+          description: Start value of the range
+        to:
+          type: object
+          description: End value of the range
+      description: Represents a range with from and to values
+    PaginationResponseGuaranteeRecordDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: "#/components/schemas/GuaranteeRecordDTO"
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
+    FilterRequestGuaranteeValuationDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/GuaranteeValuationDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+      description: Generic filter request that includes both filter criteria and pagination
+    PaginationResponseGuaranteeValuationDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: "#/components/schemas/GuaranteeValuationDTO"
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
+    FilterRequestGuaranteePartyDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/GuaranteePartyDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+      description: Generic filter request that includes both filter criteria and pagination
+    PaginationResponseGuaranteePartyDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: "#/components/schemas/GuaranteePartyDTO"
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
+    FilterRequestGuaranteeDocumentDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/GuaranteeDocumentDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+      description: Generic filter request that includes both filter criteria and pagination
+    PaginationResponseGuaranteeDocumentDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: "#/components/schemas/GuaranteeDocumentDTO"
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
+    FilterRequestGuaranteeClaimDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/GuaranteeClaimDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+      description: Generic filter request that includes both filter criteria and pagination
+    PaginationResponseGuaranteeClaimDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: "#/components/schemas/GuaranteeClaimDTO"
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
+    FilterRequestCollateralCaseDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/CollateralCaseDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+      description: Generic filter request that includes both filter criteria and pagination
+    PaginationResponseCollateralCaseDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: "#/components/schemas/CollateralCaseDTO"
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
+    FilterRequestCollateralDocumentDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/CollateralDocumentDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+      description: Generic filter request that includes both filter criteria and pagination
+    PaginationResponseCollateralDocumentDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: "#/components/schemas/CollateralDocumentDTO"
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
+    FilterRequestCollateralAssetDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/CollateralAssetDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+      description: Generic filter request that includes both filter criteria and pagination
+    PaginationResponseCollateralAssetDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: "#/components/schemas/CollateralAssetDTO"
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
+    FilterRequestCollateralValuationDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/CollateralValuationDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+      description: Generic filter request that includes both filter criteria and pagination
+    PaginationResponseCollateralValuationDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: "#/components/schemas/CollateralValuationDTO"
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
+    FilterRequestCollateralPartyDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/CollateralPartyDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+      description: Generic filter request that includes both filter criteria and pagination
+    PaginationResponseCollateralPartyDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: "#/components/schemas/CollateralPartyDTO"
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
+    FilterRequestCollateralLienDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/CollateralLienDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+      description: Generic filter request that includes both filter criteria and pagination
+    PaginationResponseCollateralLienDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: "#/components/schemas/CollateralLienDTO"
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
+    FilterRequestVehicleCollateralDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/VehicleCollateralDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+      description: Generic filter request that includes both filter criteria and pagination
+    PaginationResponseVehicleCollateralDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: "#/components/schemas/VehicleCollateralDTO"
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
+    FilterRequestSecuritiesCollateralDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/SecuritiesCollateralDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+      description: Generic filter request that includes both filter criteria and pagination
+    PaginationResponseSecuritiesCollateralDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: "#/components/schemas/SecuritiesCollateralDTO"
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
+    FilterRequestRealEstatePropertyDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/RealEstatePropertyDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+      description: Generic filter request that includes both filter criteria and pagination
+    PaginationResponseRealEstatePropertyDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: "#/components/schemas/RealEstatePropertyDTO"
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
+    FilterRequestCollateralMonitoringDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/CollateralMonitoringDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+      description: Generic filter request that includes both filter criteria and pagination
+    PaginationResponseCollateralMonitoringDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: "#/components/schemas/CollateralMonitoringDTO"
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
+    FilterRequestCollateralInsuranceDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/CollateralInsuranceDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+      description: Generic filter request that includes both filter criteria and pagination
+    PaginationResponseCollateralInsuranceDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: "#/components/schemas/CollateralInsuranceDTO"
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
