@@ -55,7 +55,7 @@ A reactive microservice for comprehensive collateral and guarantee management in
 
 ## Overview
 
-The **Core Lending Collateral Management** microservice is a critical component of the **Firefly OpenCore Banking Platform**, developed by **Firefly Software Solutions Inc** under the **Apache 2.0 license**. This service provides comprehensive management of collateral assets, cases, liens, valuations, insurance, monitoring, and guarantees associated with loan applications and servicing.
+The **Core Lending Collateral Management** microservice is a critical component of the **Firefly OpenCore Banking Platform**, developed by **Firefly Software Foundation** under the **Apache 2.0 license**. This service provides comprehensive management of collateral assets, cases, liens, valuations, insurance, monitoring, and guarantees associated with loan applications and servicing.
 
 **Organization**: [firefly-oss](https://github.com/firefly-oss)
 **Website**: [getfirefly.io](https://getfirefly.io)
@@ -1512,7 +1512,7 @@ Any other context or screenshots.
 This project is licensed under the **Apache License 2.0**.
 
 ```
-Copyright 2025 Firefly Software Solutions Inc
+Copyright 2025 Firefly Software Foundation
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
