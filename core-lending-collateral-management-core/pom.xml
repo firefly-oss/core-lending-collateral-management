@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>core-lending-collateral-management-core</artifactId>
+    <name>core-lending-collateral-management-core</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

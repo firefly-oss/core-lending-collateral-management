@@ -12,6 +12,7 @@
     </parent>
 
     <artifactId>core-lending-collateral-management</artifactId>
+    <name>core-lending-collateral-management</name>
     <packaging>pom</packaging>
     <modules>
         <module>core-lending-collateral-management-core</module>
