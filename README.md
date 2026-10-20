@@ -58,7 +58,7 @@ A reactive microservice for comprehensive collateral and guarantee management in
 The **Core Lending Collateral Management** microservice is a critical component of the **Firefly OpenCore Banking Platform**, developed by **Firefly Software Foundation** under the **Apache 2.0 license**. This service provides comprehensive management of collateral assets, cases, liens, valuations, insurance, monitoring, and guarantees associated with loan applications and servicing.
 
 **Organization**: [firefly-oss](https://github.com/firefly-oss)
-**Website**: [getfirefly.io](https://getfirefly.io)
+**Website**: [fireflysoftware.io](https://fireflysoftware.io)
 **License**: Apache 2.0
 
 ### Key Capabilities
@@ -1534,7 +1534,7 @@ See the [LICENSE](LICENSE) file for the full license text.
 ## Support
 
 ### Documentation
-- **Website**: [getfirefly.io](https://getfirefly.io)
+- **Website**: [fireflysoftware.io](https://fireflysoftware.io)
 - **API Docs**: [Swagger UI](http://localhost:8080/swagger-ui.html) (when running locally)
 - **Wiki**: [GitHub Wiki](https://github.com/firefly-oss/core-lending-collateral-management/wiki)
 
@@ -1545,8 +1545,8 @@ See the [LICENSE](LICENSE) file for the full license text.
 
 ### Commercial Support
 For enterprise support, training, and consulting:
-- **Email**: support@getfirefly.io
-- **Website**: [getfirefly.io/support](https://getfirefly.io/support)
+- **Email**: support@fireflysoftware.io
+- **Website**: [fireflysoftware.io/support](https://fireflysoftware.io/support)
 
 ---
 
@@ -1558,7 +1558,7 @@ If you find this project useful, please consider giving it a star
 
 **Firefly OpenCore Banking Platform** - Building the future of open banking infrastructure.
 
-[Website](https://getfirefly.io) • [Documentation](https://docs.getfirefly.io) • [GitHub](https://github.com/firefly-oss) • [Community](https://github.com/firefly-oss/core-lending-collateral-management/discussions)
+[Website](https://fireflysoftware.io) • [Documentation](https://docs.fireflysoftware.io) • [GitHub](https://github.com/firefly-oss) • [Community](https://github.com/firefly-oss/core-lending-collateral-management/discussions)
 
 ---
 
