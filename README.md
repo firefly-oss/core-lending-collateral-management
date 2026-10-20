@@ -1175,7 +1175,7 @@ spring:
     baseline-on-migrate: true
 logging:
   level:
-    com.firefly: DEBUG
+    io.fireflysoftware: DEBUG
 ```
 
 #### Staging
@@ -1192,7 +1192,7 @@ spring:
       max-size: 50
 logging:
   level:
-    com.firefly: INFO
+    io.fireflysoftware: INFO
 ```
 
 #### Production
@@ -1212,7 +1212,7 @@ spring:
     validate-on-migrate: true
 logging:
   level:
-    com.firefly: WARN
+    io.fireflysoftware: WARN
 management:
   endpoints:
     web:
@@ -1347,7 +1347,7 @@ GET /actuator/prometheus                 # Prometheus format
 {
   "timestamp": "2025-11-02T10:30:45.123Z",
   "level": "INFO",
-  "logger": "com.firefly.core.lending.collateral.core.services.impl.CollateralCaseServiceImpl",
+  "logger": "io.fireflysoftware.core.lending.collateral.core.services.impl.CollateralCaseServiceImpl",
   "message": "Created collateral case",
   "context": {
     "collateralCaseId": "123e4567-e89b-12d3-a456-426614174000",
