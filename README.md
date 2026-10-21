@@ -1,9 +1,9 @@
 <a href="https://fireflysoftware.io/openplatform/">
 <picture>
-  <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/firefly-oss/.github/main/profile/assets/banner-narrow-dark.svg">
-  <source media="(max-width: 640px)" srcset="https://raw.githubusercontent.com/firefly-oss/.github/main/profile/assets/banner-narrow-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/firefly-oss/.github/main/profile/assets/banner-dark.svg">
-  <img src="https://raw.githubusercontent.com/firefly-oss/.github/main/profile/assets/banner-light.svg" alt="Firefly OpenPlatform - Core Lending - Collateral Management" width="100%">
+  <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/fireflysoftwaresolutions/.github/main/profile/assets/banner-narrow-dark.svg">
+  <source media="(max-width: 640px)" srcset="https://raw.githubusercontent.com/fireflysoftwaresolutions/.github/main/profile/assets/banner-narrow-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/fireflysoftwaresolutions/.github/main/profile/assets/banner-dark.svg">
+  <img src="https://raw.githubusercontent.com/fireflysoftwaresolutions/.github/main/profile/assets/banner-light.svg" alt="Firefly OpenPlatform - Core Lending - Collateral Management" width="100%">
 </picture>
 </a>
 
@@ -122,7 +122,7 @@ The **Core Lending Collateral Management** microservice is a critical component 
   - Appraiser information and licensing
   - Methodology, assumptions, and limitations
   - Repair requirements and costs
-- Multi-currency support (EUR, USD, GBP)
+- Any ISO 4217 currency on a collateral valuation
 - Valuation expiry tracking
 
 #### Collateral Liens
@@ -384,7 +384,7 @@ erDiagram
         VARCHAR appraiser_license "100"
         DATE valuation_date
         DATE expiry_date
-        ENUM currency_code
+        varchar(3) currency_code "ISO 4217"
         DECIMAL market_value "18,2"
         DECIMAL rental_value "18,2"
         DECIMAL replacement_cost "18,2"
@@ -629,7 +629,7 @@ erDiagram
 
 ### Enumerations
 
-The microservice uses **19 enumerations** for type safety and data integrity:
+The microservice uses **18 enumerations** for type safety and data integrity:
 
 #### Collateral Enumerations
 
@@ -638,7 +638,7 @@ The microservice uses **19 enumerations** for type safety and data integrity:
 | **CollateralStatusEnum** | `ACTIVE`, `RELEASED`, `UNDER_REVIEW`, `PENDING` | Status of collateral case |
 | **AssetTypeEnum** | `REAL_ESTATE`, `VEHICLE`, `SECURITIES`, `EQUIPMENT`, `INVENTORY`, `ACCOUNTS_RECEIVABLE`, `CASH_DEPOSIT`, `PRECIOUS_METALS`, `INTELLECTUAL_PROPERTY`, `OTHER` | Type of collateral asset |
 | **ValuationMethodEnum** | `MARKET_COMPARISON`, `INCOME_APPROACH`, `COST_APPROACH`, `OTHER` | Valuation methodology |
-| **CurrencyCodeEnum** | `EUR`, `USD`, `GBP` | Currency for monetary values |
+| **Currency** | ISO 4217 alphabetic code, `varchar(3)` | Currency on a collateral valuation |
 | **LienTypeEnum** | `MORTGAGE`, `PLEDGE`, `HYPOTHEC`, `OTHER` | Type of legal claim |
 | **CollateralPartyRoleEnum** | `OWNER`, `CO_OWNER`, `OCCUPANT`, `CUSTODIAN` | Party relationship to asset |
 | **DocumentTypeEnum** | `TITLE_DEED`, `APPRAISAL_REPORT`, `INSURANCE_POLICY`, `REGISTRATION`, `INSPECTION_REPORT`, `LEGAL_OPINION`, `VALUATION_CERTIFICATE`, `LIEN_RELEASE`, `OTHER` | Document classification |
@@ -956,7 +956,7 @@ core-lending-collateral-management/
 ├── core-lending-collateral-management-interfaces/
 │   ├── src/main/java/.../interfaces/
 │   │   ├── dtos/                    # 16 DTOs with validation
-│   │   └── enums/                   # 19 enumerations
+│   │   └── enums/                   # 18 enumerations
 │   └── pom.xml
 ├── core-lending-collateral-management-models/
 │   ├── src/main/java/.../models/
