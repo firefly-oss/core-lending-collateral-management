@@ -17,7 +17,6 @@
 
 package io.fireflysoftware.core.lending.collateral.interfaces.dtos;
 
-import io.fireflysoftware.core.lending.collateral.interfaces.enums.CurrencyCodeEnum;
 import io.fireflysoftware.core.lending.collateral.interfaces.enums.ValuationMethodEnum;
 import org.fireflyframework.utils.annotations.FilterableId;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -28,6 +27,7 @@ import lombok.NoArgsConstructor;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
@@ -72,7 +72,8 @@ public class CollateralValuationDTO {
     private LocalDate expiryDate;
 
     @NotNull(message = "Currency code is required")
-    private CurrencyCodeEnum currencyCode;
+    @Pattern(regexp = "^[A-Z]{3}$", message = "Currency must be a 3-letter ISO 4217 code")
+    private String currencyCode;
 
     // Additional valuation components
     @DecimalMin(value = "0.0", message = "Market value must be 0 or greater")

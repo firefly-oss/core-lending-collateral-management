@@ -158,7 +158,7 @@ public class DtoValidationTest {
                 .valuationMethod(ValuationMethodEnum.MARKET_COMPARISON)
                 .valuationProvider("Valid Appraiser Inc.")
                 .valuationDate(LocalDate.now().minusDays(1))
-                .currencyCode(CurrencyCodeEnum.USD)
+                .currencyCode("USD")
                 .notes("Valid notes")
                 .build();
 
@@ -191,7 +191,7 @@ public class DtoValidationTest {
                 .valuationMethod(ValuationMethodEnum.MARKET_COMPARISON)
                 .valuationProvider("") // Empty provider
                 .valuationDate(LocalDate.now().plusDays(1)) // Future date
-                .currencyCode(CurrencyCodeEnum.USD)
+                .currencyCode("USD")
                 .notes("A".repeat(1001)) // Exceeds 1000 character limit
                 .build();
 

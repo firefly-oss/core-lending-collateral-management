@@ -17,7 +17,6 @@
 
 package io.fireflysoftware.core.lending.collateral.models.entities;
 
-import io.fireflysoftware.core.lending.collateral.interfaces.enums.CurrencyCodeEnum;
 import io.fireflysoftware.core.lending.collateral.interfaces.enums.ValuationMethodEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -68,7 +67,7 @@ public class CollateralValuation {
     private LocalDate expiryDate;
 
     @Column("currency_code")
-    private CurrencyCodeEnum currencyCode;
+    private String currencyCode;
 
     // Additional valuation components (for real estate appraisals)
     @Column("market_value")

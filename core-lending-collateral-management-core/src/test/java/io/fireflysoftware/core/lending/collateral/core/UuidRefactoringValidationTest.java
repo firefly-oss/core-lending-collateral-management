@@ -23,7 +23,6 @@ import io.fireflysoftware.core.lending.collateral.interfaces.dtos.CollateralValu
 import io.fireflysoftware.core.lending.collateral.interfaces.dtos.GuaranteeRecordDTO;
 import io.fireflysoftware.core.lending.collateral.interfaces.dtos.GuaranteeValuationDTO;
 import io.fireflysoftware.core.lending.collateral.interfaces.enums.CollateralStatusEnum;
-import io.fireflysoftware.core.lending.collateral.interfaces.enums.CurrencyCodeEnum;
 import io.fireflysoftware.core.lending.collateral.interfaces.enums.ValuationMethodEnum;
 import io.fireflysoftware.core.lending.collateral.interfaces.enums.GuaranteeStatusEnum;
 import io.fireflysoftware.core.lending.collateral.interfaces.enums.GuaranteeTypeEnum;
@@ -116,7 +115,7 @@ public class UuidRefactoringValidationTest {
                 .valuationMethod(ValuationMethodEnum.MARKET_COMPARISON)
                 .valuationProvider("Test Appraiser")
                 .valuationDate(LocalDate.now())
-                .currencyCode(CurrencyCodeEnum.USD)
+                .currencyCode("USD")
                 .notes("Test valuation")
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())

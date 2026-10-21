@@ -3201,10 +3201,10 @@ components:
           format: date
         currencyCode:
           type: string
-          enum:
-          - EUR
-          - USD
-          - GBP
+          minLength: 3
+          maxLength: 3
+          pattern: ^[A-Z]{3}$
+          description: ISO 4217 currency code
         marketValue:
           minimum: 0.0
           exclusiveMinimum: false
